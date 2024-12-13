@@ -58,16 +58,8 @@ void ABaseMeleeWeapon::Attack(const bool IsStart)
 			if (AActor* HitActor = Hit.GetActor())
 			{
 				//verify if hit actor has the same tag as the attach parent actor
-				if (HitActor->ActorHasTag(GetAttachParentActor()->Tags[0]))
-				{
-					//convert from FName to FString
-					if (HitActor->Tags.Num() != 0)
-					{
-						FString Tag = HitActor->Tags[0].ToString();
-						//UE_LOG(LogTemp, Log, TEXT("Actor %s has tag: %s"), *GetAttachParentActor()->GetName(), *Tag);
-					}
-					continue;
-				}
+				if (GetAttachParentActor()->Tags.Num() != 0 && HitActor->ActorHasTag(GetAttachParentActor()->Tags[0])) continue;
+				
 				//verify if the hit actor, or any of its components implements the IDamageableInterface
 				if (HitActor->GetClass()->ImplementsInterface(UDamageableInterface::StaticClass()))
 				{
