@@ -5,7 +5,7 @@
 	"Description": "",
 	"Modules": [
 		{
-			"Name": "UnrealDemo",
+			"Name": "EchoOfThePast",
 			"Type": "Runtime",
 			"LoadingPhase": "Default"
 		}
@@ -17,10 +17,6 @@
 			"TargetAllowList": [
 				"Editor"
 			]
-		},
-		{
-			"Name": "SkeletalMeshModelingTools",
-			"Enabled": true
 		}
 	]
 }
