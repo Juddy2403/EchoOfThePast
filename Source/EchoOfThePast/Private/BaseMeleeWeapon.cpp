@@ -2,8 +2,6 @@
 
 
 #include "BaseMeleeWeapon.h"
-
-#include "DamageableInterface.h"
 #include "Health.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -16,12 +14,36 @@ void ABaseMeleeWeapon::Attack(const bool IsStart)
 		return;
 	}
 
+	// If it hit nothing, return
+	TArray<FHitResult> HitResults;
+	if (!ExtractHitResult(HitResults)) return;
+	
+	for (const FHitResult& Hit : HitResults)
+	{
+		if (const AActor* HitActor = Hit.GetActor())
+		{
+			//verify if hit actor has the same tag as the attach parent actor
+			if (GetAttachParentActor()->Tags.Num() != 0 && HitActor->ActorHasTag(GetAttachParentActor()->Tags[0]))
+				continue;
+
+			//get UHealth component from the hit actor
+			if (UHealth* HealthComponent = HitActor->FindComponentByClass<UHealth>())
+			{
+				bool bIsDead = false;
+				HealthComponent->DoDamage_Implementation(ComputeDamageAmount(), bIsDead);
+			}
+		}
+	}
+}
+
+bool ABaseMeleeWeapon::ExtractHitResult(TArray<FHitResult>& HitResults) const
+{
 	FVector StartSocketLocation;
 	FVector EndSocketLocation;
 	if (WeaponMesh->DoesSocketExist("Start")) StartSocketLocation = WeaponMesh->GetSocketLocation("Start");
-	else UE_LOG(LogTemp, Warning, TEXT("Socket does not exist: Start"));
+	else UE_LOG(LogTemp, Error, TEXT("Socket does not exist: Start"));
 	if (WeaponMesh->DoesSocketExist("End")) EndSocketLocation = WeaponMesh->GetSocketLocation("End");
-	else UE_LOG(LogTemp, Warning, TEXT("Socket does not exist: End"));
+	else UE_LOG(LogTemp, Error, TEXT("Socket does not exist: End"));
 
 	// Parameters
 	float Radius = 10.0f; // Sphere radius
@@ -33,11 +55,9 @@ void ABaseMeleeWeapon::Attack(const bool IsStart)
 
 	// Trace parameters
 	TArray<AActor*> IgnoredActors;
-	TArray<FHitResult> HitResults;
 	constexpr bool bTraceComplex = false; // Whether to trace against complex collision
 
-	// Perform the trace
-	bool bHit = UKismetSystemLibrary::SphereTraceMultiForObjects(
+	const bool bHit = UKismetSystemLibrary::SphereTraceMultiForObjects(
 		GetWorld(),
 		StartSocketLocation,
 		EndSocketLocation,
@@ -49,23 +69,16 @@ void ABaseMeleeWeapon::Attack(const bool IsStart)
 		HitResults,
 		true // Ignore Self
 	);
-	// Process results
-	if (!bHit) return;
-	for (const FHitResult& Hit : HitResults)
-	{
-		if (AActor* HitActor = Hit.GetActor())
-		{
-			//verify if hit actor has the same tag as the attach parent actor
-			if (GetAttachParentActor()->Tags.Num() != 0 && HitActor->ActorHasTag(GetAttachParentActor()->Tags[0]))
-				continue;
+	return bHit;
+}
 
-			//get UHealth component from the hit actor
-			UHealth* HealthComponent = HitActor->FindComponentByClass<UHealth>();
-			if (HealthComponent)
-			{
-				bool isDead = false;
-				HealthComponent->DoDamage_Implementation(DamageAmount, isDead);
-			}
-		}
+float ABaseMeleeWeapon::ComputeDamageAmount() const
+{
+	const float CritChance = FMath::FRandRange(0.0f, 100.0f);
+	if (CritChance <= CritRate)
+	{
+		const float CritMultiplier = FMath::FRandRange(1.5f, 2.0f);
+		return DamageAmount * CritMultiplier;
 	}
+	return DamageAmount;
 }

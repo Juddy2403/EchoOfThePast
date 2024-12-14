@@ -13,9 +13,6 @@ class ECHOOFTHEPAST_API ABaseRangedWeapon : public ABaseWeapon
 	GENERATED_BODY()
 
 	ABaseRangedWeapon();
-	
-	UPROPERTY(EditAnywhere, Category="Default")
-	double FireRate;
 
 	UPROPERTY(EditAnywhere, Category="Default")
 	TObjectPtr<UClass> ProjectileClass;
@@ -26,6 +23,9 @@ class ECHOOFTHEPAST_API ABaseRangedWeapon : public ABaseWeapon
 	FTimerHandle TimerHandle;
 	bool bHasExecuted = false;
 public:
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Default")
+	double FireRate;
+	
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category="Default")
 	TObjectPtr<UArrowComponent> FireSocket;
 

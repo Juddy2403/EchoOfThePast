@@ -19,9 +19,6 @@ public:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Default")
 	TObjectPtr<USkeletalMeshComponent> WeaponMesh;
 
-	// UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category="Default")
-	// TObjectPtr<USceneComponent> DefaultSceneRoot;
-
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="Default")
 	FName SocketName;
 
@@ -31,10 +28,15 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category="Default")
 	TObjectPtr<USoundBase> AttackSound;
+
 public:	
 	// Called every frame
 	//virtual void Tick(float DeltaTime) override;
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Default")
+	double DamageAmount;
 
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Default")
+	float CritRate;
 	// Attack event
 	UFUNCTION(BlueprintCallable, Category="Default")
 	virtual void Attack(const bool IsStart){}

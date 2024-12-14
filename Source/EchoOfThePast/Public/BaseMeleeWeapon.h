@@ -14,9 +14,12 @@ class ECHOOFTHEPAST_API ABaseMeleeWeapon : public ABaseWeapon
 {
 	GENERATED_BODY()
 
-	UPROPERTY(EditAnywhere, Category="Default")
-	double DamageAmount;
+	bool ExtractHitResult(TArray<FHitResult>& HitResults) const;
+	float ComputeDamageAmount() const;
 public:
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Default")
+	float Speed;
+	
 	virtual void Attack(const bool IsStart) override;
 
 };
