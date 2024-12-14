@@ -8,7 +8,7 @@
 #include "Health.generated.h"
 
 
-UCLASS(Blueprintable, BlueprintType)
+UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent)) 
 class ECHOOFTHEPAST_API UHealth : public UActorComponent, public IDamageableInterface
 {
 	GENERATED_BODY()

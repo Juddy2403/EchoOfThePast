@@ -41,13 +41,13 @@ void UHealth::DoDamage_Implementation(float amount, bool& isDead)
 	IDamageableInterface::DoDamage_Implementation(amount, isDead);
 	if (CanBeHit)
 	{
+		UGameplayStatics::SpawnSoundAttached(HitSound, GetOwner()->GetRootComponent());
 		CanBeHit = false;
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UHealth::ResetCanBeHit, InvincibilityTime, false);
 		float originalHealth = CurrentHealth;
 		CurrentHealth = FMath::Clamp(CurrentHealth - amount, 0.0, MaxHealth);
 		if (originalHealth > CurrentHealth && CurrentHealth <= 0) OnDeath.Broadcast();
 		OnDamage.Broadcast();
-		UGameplayStatics::SpawnSoundAttached(HitSound, GetOwner()->GetRootComponent());
 	}
 	isDead = IsDead();
 }
