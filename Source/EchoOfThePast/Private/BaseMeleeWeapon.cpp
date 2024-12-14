@@ -24,8 +24,6 @@ void ABaseMeleeWeapon::Attack(const bool IsStart)
 	else UE_LOG(LogTemp, Warning, TEXT("Socket does not exist: End"));
 
 	// Parameters
-	FVector Start = GetActorLocation();
-	FVector End = Start + FVector(0, 0, 1000); // Adjust for your use case
 	float Radius = 10.0f; // Sphere radius
 
 	// Object types to trace
@@ -68,31 +66,6 @@ void ABaseMeleeWeapon::Attack(const bool IsStart)
 				bool isDead = false;
 				HealthComponent->DoDamage_Implementation(DamageAmount, isDead);
 			}
-
-			// //verify if the hit actor, or any of its components implements the IDamageableInterface
-			// if (HitActor->GetClass()->ImplementsInterface(UDamageableInterface::StaticClass()))
-			// {
-			// 	//call the DoDamage function on the hit actor
-			// 	bool bIsDead = false;
-			// 	//UE_LOG(LogTemp, Log,TEXT("Do damage to %s"), *HitActor->GetName());
-			// 	IDamageableInterface::Execute_DoDamage(HitActor, DamageAmount, bIsDead);
-			// }
-			// else
-			// {
-			// 	//check if any of the hit actor's components implement the IDamageableInterface
-			// 	TSet<UActorComponent*> Components = HitActor->GetComponents();
-			// 	for (UActorComponent* Component : Components)
-			// 	{
-			// 		if (Component->GetClass()->ImplementsInterface(UDamageableInterface::StaticClass()))
-			// 		{
-			// 			//call the DoDamage function on the hit actor
-			// 			bool bIsDead = false;
-			// 			//UE_LOG(LogTemp, Log,TEXT("Do damage to %s"), *HitActor->GetName());
-			// 			IDamageableInterface::Execute_DoDamage(Component, DamageAmount, bIsDead);
-			// 		}
-			// 		if (!HitActor) break;
-			// 	}
-			// }
 		}
 	}
 }
