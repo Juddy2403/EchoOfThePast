@@ -22,4 +22,6 @@ public:
 	
 	virtual void Attack(const bool IsStart) override;
 
+	UFUNCTION(BlueprintCallable)
+	float GetPlayRate() const;
 };
