@@ -6,6 +6,7 @@
 #include "BaseWeapon.h"
 #include "BaseRangedWeapon.generated.h"
 
+class ABaseProjectile;
 class UArrowComponent;
 UCLASS()
 class ECHOOFTHEPAST_API ABaseRangedWeapon : public ABaseWeapon
@@ -15,7 +16,7 @@ class ECHOOFTHEPAST_API ABaseRangedWeapon : public ABaseWeapon
 	ABaseRangedWeapon();
 
 	UPROPERTY(EditAnywhere, Category="Default")
-	TObjectPtr<UClass> ProjectileClass;
+	TSubclassOf<ABaseProjectile> ProjectileClass;
 
 	UFUNCTION()
 	void SpawnProjectile();

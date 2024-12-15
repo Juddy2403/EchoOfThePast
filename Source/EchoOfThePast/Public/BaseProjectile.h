@@ -28,24 +28,22 @@ class ECHOOFTHEPAST_API ABaseProjectile : public AActor
 	float ComputeDamageAmount() const;
 
 public:
-	ABaseProjectile() = default;
-	// Sets default values for this actor's properties
-	ABaseProjectile(float damageAmount,float critRate, FName ignoreTag);
-
+	ABaseProjectile();
+	
 	/** Please add a variable description */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="Default")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Default")
 	TObjectPtr<UPointLightComponent> PointLight;
 
 	/** Please add a variable description */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="Default")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Default")
 	TObjectPtr<UProjectileMovementComponent> ProjectileMovement;
 
 	/** Please add a variable description */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="Default")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Default")
 	TObjectPtr<UStaticMeshComponent> Bullet;
 
 	/** Please add a variable description */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="Default")
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Default")
 	TObjectPtr<USphereComponent> Collision;
 
 	/** Please add a variable description */

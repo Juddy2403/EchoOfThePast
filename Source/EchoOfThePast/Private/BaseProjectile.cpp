@@ -41,12 +41,11 @@ float ABaseProjectile::ComputeDamageAmount() const
 	return DamageAmount;
 }
 
-ABaseProjectile::ABaseProjectile(float damageAmount, float critRate, FName ignoreTag):
-	DamageAmount(damageAmount), IgnoreTag(ignoreTag), CritRate(critRate)
+ABaseProjectile::ABaseProjectile()
 {
 	PrimaryActorTick.bCanEverTick = true;
-
 	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
+
 	PointLight = CreateDefaultSubobject<UPointLightComponent>(TEXT("Light"));
 	PointLight->SetupAttachment(RootComponent);
 	PointLight->bEditableWhenInherited = true; // Allow editing in derived Blueprints
@@ -54,18 +53,22 @@ ABaseProjectile::ABaseProjectile(float damageAmount, float critRate, FName ignor
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovement"));
 	ProjectileMovement->InitialSpeed = 3000.0f;
 	ProjectileMovement->MaxSpeed = 3000.0f;
-	ProjectileMovement->bRotationFollowsVelocity = true;
+	ProjectileMovement->bRotationFollowsVelocity = false;
 	ProjectileMovement->bShouldBounce = false;
+	ProjectileMovement->bSweepCollision = false;
 	ProjectileMovement->bEditableWhenInherited = true; // Allow editing in derived Blueprints
 
 	Bullet = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Bullet"));
 	Bullet->SetupAttachment(RootComponent);
+	Bullet->SetCollisionProfileName("NoCollision");
 	Bullet->bEditableWhenInherited = true; // Allow editing in derived Blueprints
 
 	Collision = CreateDefaultSubobject<USphereComponent>(TEXT("Collision"));
-	Collision->SetupAttachment(Bullet);
+	Collision->SetupAttachment(RootComponent);
+	Collision->SetCollisionProfileName("OverlapOnlyPawn");
 	Collision->bEditableWhenInherited = true; // Allow editing in derived Blueprints
 
 	Collision->OnComponentHit.AddDynamic(this, &ABaseProjectile::OnComponentHit);
 	Collision->OnComponentBeginOverlap.AddDynamic(this, &ABaseProjectile::OnComponentBeginOverlap);
 }
+

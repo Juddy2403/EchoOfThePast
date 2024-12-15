@@ -3,6 +3,7 @@
 
 #include "BaseRangedWeapon.h"
 
+#include "BaseProjectile.h"
 #include "Components/ArrowComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
@@ -39,7 +40,17 @@ void ABaseRangedWeapon::SpawnProjectile()
 		SpawnTransform.SetRotation(FQuat(FRotator(0, LookAtRotation.Yaw, 0))); // Only the yaw component
 
 		// Spawn the actor
-		AActor* proj = GetWorld()->SpawnActor<AActor>(ProjectileClass, SpawnTransform);
+		if (ProjectileClass)
+		{
+			ABaseProjectile* Projectile = GetWorld()->SpawnActorDeferred<ABaseProjectile>( ProjectileClass, SpawnTransform);
+			if (Projectile)
+			{
+				Projectile->DamageAmount = DamageAmount;
+				Projectile->CritRate = CritRate;
+				if (GetAttachParentActor()->Tags.Num() != 0) Projectile->IgnoreTag = GetAttachParentActor()->Tags[0];
+				UGameplayStatics::FinishSpawningActor(Projectile, SpawnTransform);
+			}
+		}
 	}
 	else
 	{
@@ -50,14 +61,15 @@ void ABaseRangedWeapon::SpawnProjectile()
 void ABaseRangedWeapon::Attack(const bool IsStart)
 {
 	Super::Attack(IsStart);
-	
+
 	if (IsStart)
 	{
 		if (!bHasExecuted)
 		{
 			bHasExecuted = true;
 			SpawnProjectile();
-			GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &ABaseRangedWeapon::SpawnProjectile, 1.0/FireRate, true);
+			GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &ABaseRangedWeapon::SpawnProjectile,
+			                                       1.0 / FireRate, true);
 			SpawnProjectile();
 		}
 	}
