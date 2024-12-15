@@ -30,7 +30,7 @@ public:
 	void Heal(double Amount);
 
 	/** Please add a function description */
-	virtual void DoDamage_Implementation(float amount, bool& isDead) override;
+	virtual void DoDamage_Implementation(float amount, bool isCrit, bool& isDead) override;
 	
 	/** Please add a variable description */
 	DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnDeath);
@@ -38,18 +38,17 @@ public:
 	FOnDeath OnDeath;
 
 	/** Please add a variable description */
-	DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnDamage);
+	DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnDamage, float, DamageAmount, bool, IsCrit);
 	UPROPERTY(BlueprintAssignable, EditDefaultsOnly)
 	FOnDamage OnDamage;
 
+	UPROPERTY(EditDefaultsOnly ,BlueprintReadWrite ,Category="Health")
+	double MaxHealth;
 private:
 	FTimerHandle TimerHandle;
 
 	UPROPERTY(EditAnywhere, Category="Default")
 	TObjectPtr<USoundBase> HitSound;
-
-	UPROPERTY(EditAnywhere, Category="Health")
-	double MaxHealth;
 
 	UPROPERTY()
 	double InvincibilityTime;
@@ -69,9 +68,5 @@ private:
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
-
-// public:	
-// 	// Called every frame
-// 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 		
 };

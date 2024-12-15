@@ -23,5 +23,5 @@ class ECHOOFTHEPAST_API IDamageableInterface
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "DoDamage Reaction") 
-	void DoDamage(float amount, bool& isDead); 
+	void DoDamage(float amount,bool isCrit, bool& isDead); 
 };

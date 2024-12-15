@@ -36,9 +36,8 @@ void UHealth::Heal(double Amount)
 	CurrentHealth = FMath::Clamp(CurrentHealth + Amount, 0.0, MaxHealth);
 }
 
-void UHealth::DoDamage_Implementation(float amount, bool& isDead)
+void UHealth::DoDamage_Implementation(float amount, bool isCrit, bool& isDead)
 {
-	IDamageableInterface::DoDamage_Implementation(amount, isDead);
 	if (CanBeHit)
 	{
 		UGameplayStatics::SpawnSoundAttached(HitSound, GetOwner()->GetRootComponent());
@@ -47,7 +46,7 @@ void UHealth::DoDamage_Implementation(float amount, bool& isDead)
 		float originalHealth = CurrentHealth;
 		CurrentHealth = FMath::Clamp(CurrentHealth - amount, 0.0, MaxHealth);
 		if (originalHealth > CurrentHealth && CurrentHealth <= 0) OnDeath.Broadcast();
-		OnDamage.Broadcast();
+		OnDamage.Broadcast(amount, isCrit);
 	}
 	isDead = IsDead();
 }

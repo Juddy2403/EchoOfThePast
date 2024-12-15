@@ -25,7 +25,8 @@ void ABaseProjectile::ProcessCollision(AActor* OtherActor)
 	if (UHealth* HealthComponent = OtherActor->FindComponentByClass<UHealth>())
 	{
 		bool bIsDead = false;
-		HealthComponent->DoDamage_Implementation(ComputeDamageAmount(), bIsDead);
+		float damageAmount = ComputeDamageAmount();
+		HealthComponent->DoDamage_Implementation(damageAmount, damageAmount > DamageAmount, bIsDead);
 		Destroy();
 	}
 }
@@ -36,7 +37,7 @@ float ABaseProjectile::ComputeDamageAmount() const
 	if (CritChance <= CritRate)
 	{
 		const float CritMultiplier = FMath::FRandRange(1.5f, 2.0f);
-		return DamageAmount * CritMultiplier;
+		return FMath::RoundToFloat(DamageAmount * CritMultiplier);
 	}
 	return DamageAmount;
 }

@@ -30,7 +30,8 @@ void ABaseMeleeWeapon::Attack(const bool IsStart)
 			if (UHealth* HealthComponent = HitActor->FindComponentByClass<UHealth>())
 			{
 				bool bIsDead = false;
-				HealthComponent->DoDamage_Implementation(ComputeDamageAmount(), bIsDead);
+				float damageAmount = ComputeDamageAmount();
+				HealthComponent->DoDamage_Implementation(damageAmount, damageAmount > DamageAmount, bIsDead);
 			}
 		}
 	}
@@ -84,7 +85,9 @@ float ABaseMeleeWeapon::ComputeDamageAmount() const
 	if (CritChance <= CritRate)
 	{
 		const float CritMultiplier = FMath::FRandRange(1.5f, 2.0f);
-		return DamageAmount * CritMultiplier;
+		// floor the result to avoid floating point errors
+		
+		return FMath::RoundToFloat(DamageAmount * CritMultiplier);
 	}
 	return DamageAmount;
 }
