@@ -34,6 +34,8 @@ void ABaseProjectile::ProcessCollision(AActor* OtherActor)
 float ABaseProjectile::ComputeDamageAmount() const
 {
 	const float CritChance = FMath::FRandRange(0.0f, 100.0f);
+	//in case we miss the hit
+	if (CritChance <= 10.0f) return 0;
 	if (CritChance <= CritRate)
 	{
 		const float CritMultiplier = FMath::FRandRange(1.5f, 2.0f);
