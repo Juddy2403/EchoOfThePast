@@ -38,7 +38,7 @@ void ABaseMeleeWeapon::Attack(const bool IsStart)
 
 float ABaseMeleeWeapon::GetPlayRate() const
 {
-	//mathematical function so that a speed of one means 0.4 play rate and a speed of 100 is 3.0 play rate
+	//mathematical function so that a speed of one means 0.6 play rate and a speed of 100 is 3.0 play rate
 	return 0.02424f * Speed + 0.57576f;
 }
 

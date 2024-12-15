@@ -39,7 +39,7 @@ void ABaseRangedWeapon::SpawnProjectile()
 		SpawnTransform.SetRotation(FQuat(FRotator(0, LookAtRotation.Yaw, 0))); // Only the yaw component
 
 		// Spawn the actor
-		GetWorld()->SpawnActor<AActor>(ProjectileClass, SpawnTransform);
+		AActor* proj = GetWorld()->SpawnActor<AActor>(ProjectileClass, SpawnTransform);
 	}
 	else
 	{
