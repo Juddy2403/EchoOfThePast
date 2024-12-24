@@ -36,6 +36,10 @@
 		{
 			"Name": "NiagaraFluids",
 			"Enabled": true
+		},
+		{
+			"Name": "AdvancedRenamer",
+			"Enabled": true
 		}
 	]
 }
