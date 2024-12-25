@@ -29,6 +29,7 @@ void ABaseProjectile::ProcessCollision(AActor* OtherActor)
 		HealthComponent->DoDamage_Implementation(damageAmount, damageAmount > DamageAmount, bIsDead);
 		Destroy();
 	}
+	else Destroy();
 }
 
 float ABaseProjectile::ComputeDamageAmount() const
