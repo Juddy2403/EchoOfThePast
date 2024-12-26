@@ -23,8 +23,8 @@ class ECHOOFTHEPAST_API IInteractableHandler
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Interaction") 
-	void AddInteractable(const TScriptInterface<class UInteractable>& Interactable);
+	void AddInteractable(UObject* Interactable);
 	
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Interaction") 
-	void RemoveInteractable(const TScriptInterface<class UInteractable>& Interactable); 
+	void RemoveInteractable(UObject* Interactable); 
 };
