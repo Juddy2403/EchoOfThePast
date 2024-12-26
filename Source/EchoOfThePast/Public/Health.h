@@ -44,14 +44,14 @@ public:
 
 	UPROPERTY(EditDefaultsOnly ,BlueprintReadWrite ,Category="Health")
 	double MaxHealth;
+
+	UPROPERTY(EditDefaultsOnly ,BlueprintReadWrite ,Category="Default")
+	double InvincibilityTime;
 private:
 	FTimerHandle TimerHandle;
 
 	UPROPERTY(EditAnywhere, Category="Default")
 	TObjectPtr<USoundBase> HitSound;
-
-	UPROPERTY()
-	double InvincibilityTime;
 
 	/** Please add a variable description */
 	UPROPERTY()
