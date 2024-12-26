@@ -59,7 +59,7 @@ ABaseProjectile::ABaseProjectile()
 	ProjectileMovement->MaxSpeed = 3000.0f;
 	ProjectileMovement->bRotationFollowsVelocity = false;
 	ProjectileMovement->bShouldBounce = false;
-	ProjectileMovement->bSweepCollision = false;
+	ProjectileMovement->bSweepCollision = true;
 	ProjectileMovement->bEditableWhenInherited = true; // Allow editing in derived Blueprints
 
 	Bullet = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Bullet"));
