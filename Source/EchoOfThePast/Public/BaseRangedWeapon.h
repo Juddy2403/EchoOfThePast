@@ -19,10 +19,11 @@ class ECHOOFTHEPAST_API ABaseRangedWeapon : public ABaseWeapon
 	TSubclassOf<ABaseProjectile> ProjectileClass;
 
 	UFUNCTION()
-	void SpawnProjectile();
+	void SpawnProjectile() const;
 
 	FTimerHandle TimerHandle;
 	bool bHasExecuted = false;
+	bool bShootTowardsPlayer = false;
 public:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Default")
 	double FireRate;
