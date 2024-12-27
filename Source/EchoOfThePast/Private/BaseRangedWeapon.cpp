@@ -70,7 +70,6 @@ void ABaseRangedWeapon::Attack(const bool IsStart)
 			SpawnProjectile();
 			GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &ABaseRangedWeapon::SpawnProjectile,
 			                                       1.0 / FireRate, true);
-			SpawnProjectile();
 		}
 	}
 	else
