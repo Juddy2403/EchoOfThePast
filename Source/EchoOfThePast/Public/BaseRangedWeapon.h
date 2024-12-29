@@ -13,17 +13,25 @@ class ECHOOFTHEPAST_API ABaseRangedWeapon : public ABaseWeapon
 {
 	GENERATED_BODY()
 
+	UFUNCTION()
+	void ResetCanShoot() { bCanShoot = true; }
+	
+	FTimerHandle TimerHandle;
+	FTimerHandle TimerExecutedHandle;
+	bool bHasStartedShootingLoop = false;
+	bool bCanShoot = true;
+
+protected:
 	ABaseRangedWeapon();
 
-	UPROPERTY(EditAnywhere, Category="Default")
-	TSubclassOf<ABaseProjectile> ProjectileClass;
+	UFUNCTION()
+	virtual bool GetProjectileTargetLocation(FVector& targetLocation) const;
 
 	UFUNCTION()
 	void SpawnProjectile() const;
-
-	FTimerHandle TimerHandle;
-	bool bHasExecuted = false;
-	bool bShootTowardsPlayer = false;
+	
+	UPROPERTY(EditAnywhere, Category="Default")
+	TSubclassOf<ABaseProjectile> ProjectileClass;
 public:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Default")
 	double FireRate;

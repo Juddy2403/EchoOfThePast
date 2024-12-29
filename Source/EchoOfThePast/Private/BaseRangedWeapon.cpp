@@ -1,8 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "BaseRangedWeapon.h"
-
 #include "BaseProjectile.h"
 #include "Components/ArrowComponent.h"
 #include "Kismet/GameplayStatics.h"
@@ -14,30 +12,34 @@ ABaseRangedWeapon::ABaseRangedWeapon()
 	FireSocket->SetupAttachment(RootComponent);
 }
 
+bool ABaseRangedWeapon::GetProjectileTargetLocation(FVector& targetLocation) const
+{
+	// Get the player controller
+	const TObjectPtr<APlayerController> PlayerController = UGameplayStatics::GetPlayerController(this, 0);
+	if (!PlayerController)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("PlayerController is null."));
+		return false;
+	}
+
+	// Perform a hit test under the cursor
+	FHitResult HitResult;
+	if (PlayerController->GetHitResultUnderCursorByChannel(ETraceTypeQuery::TraceTypeQuery1, false, HitResult))
+	{
+		// Get the location of the hit result
+		targetLocation = HitResult.Location;
+		return true;
+	}
+
+	UE_LOG(LogTemp, Warning, TEXT("No hit result under cursor."));
+	return false;
+}
+
 void ABaseRangedWeapon::SpawnProjectile() const
 {
 	FVector TargetLocation;
-	
-	if (bShootTowardsPlayer) TargetLocation = UGameplayStatics::GetPlayerPawn(this, 0)->GetActorLocation();
-	else
-	{
-		// Get the player controller
-		const TObjectPtr<APlayerController> PlayerController = UGameplayStatics::GetPlayerController(this, 0);
-		if (!PlayerController) UE_LOG(LogTemp, Warning, TEXT("PlayerController is null."));
+	if (!GetProjectileTargetLocation(TargetLocation)) return;
 
-		// Perform a hit test under the cursor
-		FHitResult HitResult;
-		if (PlayerController->GetHitResultUnderCursorByChannel(ETraceTypeQuery::TraceTypeQuery1, false, HitResult))
-		{
-			// Get the location of the hit result
-			TargetLocation = HitResult.Location;
-		}
-		else
-		{
-			UE_LOG(LogTemp, Warning, TEXT("No hit result under cursor."));
-			return;
-		}
-	}
 	UGameplayStatics::SpawnSoundAttached(AttackSound, WeaponMesh);
 
 	const FVector ComponentLocation = FireSocket->GetComponentLocation();
@@ -53,8 +55,8 @@ void ABaseRangedWeapon::SpawnProjectile() const
 	// Spawn the actor
 	if (ProjectileClass)
 	{
-		ABaseProjectile* Projectile = GetWorld()->SpawnActorDeferred<ABaseProjectile>( ProjectileClass, SpawnTransform);
-		if (Projectile)
+		if (ABaseProjectile* Projectile = GetWorld()->SpawnActorDeferred<ABaseProjectile>(
+			ProjectileClass, SpawnTransform))
 		{
 			Projectile->DamageAmount = DamageAmount;
 			Projectile->CritRate = CritRate;
@@ -62,6 +64,7 @@ void ABaseRangedWeapon::SpawnProjectile() const
 			UGameplayStatics::FinishSpawningActor(Projectile, SpawnTransform);
 		}
 	}
+	else UE_LOG(LogTemp, Warning, TEXT("ProjectileClass is null."));
 }
 
 void ABaseRangedWeapon::Attack(const bool IsStart)
@@ -70,24 +73,19 @@ void ABaseRangedWeapon::Attack(const bool IsStart)
 
 	if (IsStart)
 	{
-		if (!bHasExecuted)
-		{
-			bHasExecuted = true;
-			SpawnProjectile();
-			GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &ABaseRangedWeapon::SpawnProjectile,
-			                                       1.0 / FireRate, true);
-		}
+		if (!bCanShoot) return;
+		if (bHasStartedShootingLoop) return;
+		bCanShoot = false;
+		bHasStartedShootingLoop = true;
+		SpawnProjectile();
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &ABaseRangedWeapon::SpawnProjectile,
+		                                       1.0 / FireRate, true);
+		GetWorld()->GetTimerManager().SetTimer(TimerExecutedHandle, this, &ABaseRangedWeapon::ResetCanShoot,
+		                                       1.0 / FireRate, false);
 	}
 	else
 	{
-		// enemy will always shoot with IsStart = false. This is for the enemy attack only
-		if (!bHasExecuted)
-		{
-			bShootTowardsPlayer = true;
-			SpawnProjectile();
-			return;
-		}
+		bHasStartedShootingLoop = false;
 		GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
-		bHasExecuted = false;
 	}
 }
