@@ -18,6 +18,6 @@ protected:
 	virtual bool GetProjectileTargetLocation(FVector& targetLocation) const override;
 
 public:
-	virtual void Attack(const bool IsStart) override;
+	virtual void Attack(const bool IsStart, const float DamageModifier = 1) override;
 
 };

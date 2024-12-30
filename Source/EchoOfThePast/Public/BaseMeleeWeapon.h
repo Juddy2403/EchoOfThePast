@@ -20,7 +20,7 @@ public:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Default")
 	float Speed;
 	
-	virtual void Attack(const bool IsStart) override;
+	virtual void Attack(const bool IsStart, const float DamageModifier = 1) override;
 
 	UFUNCTION(BlueprintCallable)
 	float GetPlayRate() const;

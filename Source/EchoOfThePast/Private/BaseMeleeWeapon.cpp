@@ -5,9 +5,10 @@
 #include "Health.h"
 #include "Kismet/GameplayStatics.h"
 
-void ABaseMeleeWeapon::Attack(const bool IsStart)
+void ABaseMeleeWeapon::Attack(const bool IsStart, const float DamageModifier)
 {
 	Super::Attack(IsStart);
+	CurrentDamageModifier = DamageModifier;
 	if (IsStart)
 	{
 		UGameplayStatics::SpawnSoundAttached(AttackSound, WeaponMesh);
@@ -31,7 +32,7 @@ void ABaseMeleeWeapon::Attack(const bool IsStart)
 			{
 				bool bIsDead = false;
 				float damageAmount = ComputeDamageAmount();
-				HealthComponent->DoDamage_Implementation(damageAmount, damageAmount > DamageAmount, bIsDead);
+				HealthComponent->DoDamage_Implementation(damageAmount, damageAmount > DamageAmount * CurrentDamageModifier, bIsDead);
 			}
 		}
 	}
@@ -89,7 +90,7 @@ float ABaseMeleeWeapon::ComputeDamageAmount() const
 		const float CritMultiplier = FMath::FRandRange(1.5f, 2.0f);
 		// floor the result to avoid floating point errors
 		
-		return FMath::RoundToFloat(DamageAmount * CritMultiplier);
+		return FMath::RoundToFloat(DamageAmount * CurrentDamageModifier * CritMultiplier);
 	}
-	return DamageAmount;
+	return DamageAmount * CurrentDamageModifier;
 }

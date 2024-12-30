@@ -10,7 +10,7 @@ bool AEnemyBaseRangedWeapon::GetProjectileTargetLocation(FVector& targetLocation
 	return true;
 }
 
-void AEnemyBaseRangedWeapon::Attack(const bool IsStart)
+void AEnemyBaseRangedWeapon::Attack(const bool IsStart, const float DamageModifier)
 {
 	SpawnProjectile();
 }

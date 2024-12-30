@@ -1,6 +1,4 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "BaseWeapon.h"
 
 // Sets default values
@@ -23,10 +21,4 @@ void ABaseWeapon::BeginPlay()
 {
 	Super::BeginPlay();
 }
-
-// Called every frame
-// void ABaseWeapon::Tick(float DeltaTime)
-// {
-// 	Super::Tick(DeltaTime);
-// }
 

@@ -29,6 +29,9 @@ protected:
 	UPROPERTY(EditAnywhere, Category="Default")
 	TObjectPtr<USoundBase> AttackSound;
 
+	UPROPERTY()
+	float CurrentDamageModifier = 1;
+
 public:	
 	// Called every frame
 	//virtual void Tick(float DeltaTime) override;
@@ -39,5 +42,5 @@ public:
 	float CritRate;
 	// Attack event
 	UFUNCTION(BlueprintCallable, Category="Default")
-	virtual void Attack(const bool IsStart){}
+	virtual void Attack(const bool IsStart, const float DamageModifier = 1){}
 };

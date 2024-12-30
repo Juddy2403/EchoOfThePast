@@ -58,7 +58,7 @@ void ABaseRangedWeapon::SpawnProjectile() const
 		if (ABaseProjectile* Projectile = GetWorld()->SpawnActorDeferred<ABaseProjectile>(
 			ProjectileClass, SpawnTransform))
 		{
-			Projectile->DamageAmount = DamageAmount;
+			Projectile->DamageAmount = CurrentDamageModifier * DamageAmount;
 			Projectile->CritRate = CritRate;
 			if (GetAttachParentActor()->Tags.Num() != 0) Projectile->IgnoreTag = GetAttachParentActor()->Tags[0];
 			UGameplayStatics::FinishSpawningActor(Projectile, SpawnTransform);
@@ -67,10 +67,10 @@ void ABaseRangedWeapon::SpawnProjectile() const
 	else UE_LOG(LogTemp, Warning, TEXT("ProjectileClass is null."));
 }
 
-void ABaseRangedWeapon::Attack(const bool IsStart)
+void ABaseRangedWeapon::Attack(const bool IsStart, const float DamageModifier)
 {
 	Super::Attack(IsStart);
-
+	CurrentDamageModifier = DamageModifier;
 	if (IsStart)
 	{
 		if (!bCanShoot) return;
