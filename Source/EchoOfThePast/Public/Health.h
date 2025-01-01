@@ -28,6 +28,10 @@ public:
 	/** Please add a function description */
 	UFUNCTION(BlueprintCallable)
 	void Heal(double Amount);
+	
+	/** Please add a function description */
+	UFUNCTION(BlueprintCallable)
+	void SetMaxHP(double MaxHP);
 
 	/** Please add a function description */
 	virtual void DoDamage_Implementation(float amount, bool isCrit, bool& isDead) override;

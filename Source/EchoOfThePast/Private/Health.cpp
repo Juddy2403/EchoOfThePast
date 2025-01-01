@@ -36,6 +36,12 @@ void UHealth::Heal(double Amount)
 	CurrentHealth = FMath::Clamp(CurrentHealth + Amount, 0.0, MaxHealth);
 }
 
+void UHealth::SetMaxHP(const double MaxHP)
+{
+	MaxHealth = MaxHP;
+	CurrentHealth = MaxHP;
+}
+
 void UHealth::DoDamage_Implementation(float amount, bool isCrit, bool& isDead)
 {
 	if (CanBeHit)
