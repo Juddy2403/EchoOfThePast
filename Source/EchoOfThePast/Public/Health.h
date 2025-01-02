@@ -49,6 +49,10 @@ public:
 	UPROPERTY(EditDefaultsOnly ,BlueprintReadWrite ,Category="Health")
 	double MaxHealth;
 
+	/** Please add a variable description */
+	UPROPERTY(BlueprintReadWrite ,Category="Health")
+	double CurrentHealth;
+	
 	UPROPERTY(EditDefaultsOnly ,BlueprintReadWrite ,Category="Default")
 	double InvincibilityTime;
 private:
@@ -56,10 +60,6 @@ private:
 
 	UPROPERTY(EditAnywhere, Category="Default")
 	TObjectPtr<USoundBase> HitSound;
-
-	/** Please add a variable description */
-	UPROPERTY()
-	double CurrentHealth;
 
 	/** Please add a variable description */
 	UPROPERTY()
