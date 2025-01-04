@@ -24,7 +24,8 @@ bool ABaseRangedWeapon::GetProjectileTargetLocation(FVector& targetLocation) con
 
 	// Perform a hit test under the cursor
 	FHitResult HitResult;
-	if (PlayerController->GetHitResultUnderCursorByChannel(ETraceTypeQuery::TraceTypeQuery1, false, HitResult))
+	ETraceTypeQuery TraceChannel = UCollisionProfile::Get()->ConvertToTraceType(ECollisionChannel::ECC_GameTraceChannel1);
+	if (PlayerController->GetHitResultUnderCursorByChannel(TraceChannel, false, HitResult))
 	{
 		// Get the location of the hit result
 		targetLocation = HitResult.Location;
