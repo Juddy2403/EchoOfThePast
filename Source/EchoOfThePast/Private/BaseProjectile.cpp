@@ -6,30 +6,38 @@
 #include "GameFramework/ProjectileMovementComponent.h"
 
 void ABaseProjectile::OnComponentHit(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
-                                     UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit)
+	UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit)
 {
+	if (!OtherActor)
+	{
+		Destroy();
+		return;
+	}
 	ProcessCollision(OtherActor);
 }
 
 void ABaseProjectile::OnComponentBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
-	UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+                                              UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+	if (!OtherActor)
+	{
+		Destroy();
+		return;
+	}
 	ProcessCollision(OtherActor);
 }
 
 void ABaseProjectile::ProcessCollision(AActor* OtherActor)
 {
 	if (OtherActor->ActorHasTag(IgnoreTag)) return;
-
 	//get UHealth component from the hit actor
 	if (UHealth* HealthComponent = OtherActor->FindComponentByClass<UHealth>())
 	{
 		bool bIsDead = false;
 		float damageAmount = ComputeDamageAmount();
 		HealthComponent->DoDamage_Implementation(damageAmount, damageAmount > DamageAmount, bIsDead);
-		Destroy();
 	}
-	else Destroy();
+	Destroy();
 }
 
 float ABaseProjectile::ComputeDamageAmount() const
@@ -48,8 +56,15 @@ float ABaseProjectile::ComputeDamageAmount() const
 ABaseProjectile::ABaseProjectile()
 {
 	PrimaryActorTick.bCanEverTick = true;
-	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
+	Collision = CreateDefaultSubobject<USphereComponent>(TEXT("Collision"));
+	Collision->SetCollisionProfileName("OverlapOnlyPawn");
+	Collision->bEditableWhenInherited = true; // Allow editing in derived Blueprints
+	RootComponent = Collision;
 
+	Collision->OnComponentBeginOverlap.AddDynamic(this, &ABaseProjectile::OnComponentBeginOverlap);
+	Collision->OnComponentHit.AddDynamic(this, &ABaseProjectile::OnComponentHit);
+	Collision->SetGenerateOverlapEvents(true);
+	
 	PointLight = CreateDefaultSubobject<UPointLightComponent>(TEXT("Light"));
 	PointLight->SetupAttachment(RootComponent);
 	PointLight->bEditableWhenInherited = true; // Allow editing in derived Blueprints
@@ -67,12 +82,6 @@ ABaseProjectile::ABaseProjectile()
 	Bullet->SetCollisionProfileName("NoCollision");
 	Bullet->bEditableWhenInherited = true; // Allow editing in derived Blueprints
 
-	Collision = CreateDefaultSubobject<USphereComponent>(TEXT("Collision"));
-	Collision->SetupAttachment(RootComponent);
-	Collision->SetCollisionProfileName("OverlapOnlyPawn");
-	Collision->bEditableWhenInherited = true; // Allow editing in derived Blueprints
 
-	Collision->OnComponentHit.AddDynamic(this, &ABaseProjectile::OnComponentHit);
-	Collision->OnComponentBeginOverlap.AddDynamic(this, &ABaseProjectile::OnComponentBeginOverlap);
 }
 
