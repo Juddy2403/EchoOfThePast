@@ -20,6 +20,7 @@ class ECHOOFTHEPAST_API ABaseRangedWeapon : public ABaseWeapon
 	FTimerHandle TimerExecutedHandle;
 	bool bHasStartedShootingLoop = false;
 	bool bCanShoot = true;
+	int CurrentAmmo = 0;
 
 protected:
 	ABaseRangedWeapon();
@@ -28,7 +29,7 @@ protected:
 	virtual bool GetProjectileTargetLocation(FVector& targetLocation) const;
 
 	UFUNCTION()
-	void SpawnProjectile() const;
+	void SpawnProjectile();
 	
 	UPROPERTY(EditAnywhere, Category="Default")
 	TSubclassOf<ABaseProjectile> ProjectileClass;
@@ -40,4 +41,14 @@ public:
 	TObjectPtr<UArrowComponent> FireSocket;
 
 	virtual void Attack(const bool IsStart, const float DamageModifier = 1) override;
+
+	UFUNCTION(BlueprintCallable, Category="Default")
+	void SetAmmo(const int AmmoNumber) { CurrentAmmo = AmmoNumber; }
+	
+	UFUNCTION(BlueprintCallable, Category="Default")
+	int GetAmmo() const { return CurrentAmmo; }
+
+	DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnBulletFired);
+	UPROPERTY(BlueprintAssignable, EditDefaultsOnly)
+	FOnBulletFired OnBulletFired;
 };

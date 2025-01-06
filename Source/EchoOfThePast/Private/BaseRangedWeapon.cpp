@@ -36,11 +36,16 @@ bool ABaseRangedWeapon::GetProjectileTargetLocation(FVector& targetLocation) con
 	return false;
 }
 
-void ABaseRangedWeapon::SpawnProjectile() const
+void ABaseRangedWeapon::SpawnProjectile() 
 {
 	FVector TargetLocation;
+	if (CurrentAmmo <= 0)
+	{
+		GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+		return;
+	}
 	if (!GetProjectileTargetLocation(TargetLocation)) return;
-
+	
 	UGameplayStatics::SpawnSoundAttached(AttackSound, WeaponMesh);
 
 	const FVector ComponentLocation = FireSocket->GetComponentLocation();
@@ -59,6 +64,8 @@ void ABaseRangedWeapon::SpawnProjectile() const
 		if (ABaseProjectile* Projectile = GetWorld()->SpawnActorDeferred<ABaseProjectile>(
 			ProjectileClass, SpawnTransform))
 		{
+			--CurrentAmmo;
+			OnBulletFired.Broadcast();
 			Projectile->DamageAmount = CurrentDamageModifier * DamageAmount;
 			Projectile->CritRate = CritRate;
 			if (GetAttachParentActor()->Tags.Num() != 0) Projectile->IgnoreTag = GetAttachParentActor()->Tags[0];
@@ -75,6 +82,7 @@ void ABaseRangedWeapon::Attack(const bool IsStart, const float DamageModifier)
 	if (IsStart)
 	{
 		if (!bCanShoot) return;
+		if (CurrentAmmo <= 0) return;
 		if (bHasStartedShootingLoop) return;
 		bCanShoot = false;
 		bHasStartedShootingLoop = true;
