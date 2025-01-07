@@ -15,15 +15,18 @@ class ECHOOFTHEPAST_API ABaseRangedWeapon : public ABaseWeapon
 
 	UFUNCTION()
 	void ResetCanShoot() { bCanShoot = true; }
+
+	UFUNCTION()
+	void SpawnParticlesAtMuzzle(UParticleSystem* ParticleSystem) const;
 	
 	FTimerHandle TimerHandle;
 	FTimerHandle TimerExecutedHandle;
 	bool bHasStartedShootingLoop = false;
 	bool bCanShoot = true;
-	int CurrentAmmo = 0;
 
 protected:
 	ABaseRangedWeapon();
+	int CurrentAmmo = 0;
 
 	UFUNCTION()
 	virtual bool GetProjectileTargetLocation(FVector& targetLocation) const;
@@ -39,6 +42,12 @@ public:
 	
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category="Default")
 	TObjectPtr<UArrowComponent> FireSocket;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default")
+	UParticleSystem* SparksParticles;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default")
+	UParticleSystem* SmokeParticles;
 
 	virtual void Attack(const bool IsStart, const float DamageModifier = 1) override;
 

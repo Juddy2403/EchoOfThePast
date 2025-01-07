@@ -4,9 +4,11 @@
 #include "Components/PointLightComponent.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "Particles/ParticleSystemComponent.h"
 
 void ABaseProjectile::OnComponentHit(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
-	UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit)
+                                     UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit)
 {
 	if (!OtherActor)
 	{
@@ -22,6 +24,7 @@ void ABaseProjectile::OnComponentBeginOverlap(UPrimitiveComponent* OverlappedCom
 	if (!OtherActor)
 	{
 		Destroy();
+		SpawnHitParticles();
 		return;
 	}
 	ProcessCollision(OtherActor);
@@ -37,6 +40,7 @@ void ABaseProjectile::ProcessCollision(AActor* OtherActor)
 		float damageAmount = ComputeDamageAmount();
 		HealthComponent->DoDamage_Implementation(damageAmount, damageAmount > DamageAmount, bIsDead);
 	}
+	SpawnHitParticles();
 	Destroy();
 }
 
@@ -51,6 +55,21 @@ float ABaseProjectile::ComputeDamageAmount() const
 		return FMath::RoundToFloat(DamageAmount * CritMultiplier);
 	}
 	return DamageAmount;
+}
+
+void ABaseProjectile::SpawnHitParticles() const
+{
+	const FVector Velocity = ProjectileMovement->Velocity;
+	const FVector OppositeDirection = -Velocity.GetSafeNormal();
+	const FRotator OppositeRotation = OppositeDirection.Rotation() - FRotator(90.0f, 0.0f, 0.0f);
+	UParticleSystemComponent* ParticleComponent = UGameplayStatics::SpawnEmitterAtLocation(
+		GetWorld(),
+		HitParticles, // Your particle effect asset
+		GetActorLocation(), // Spawn location
+		OppositeRotation   // Rotation in the opposite direction of velocity
+	);
+	ParticleComponent->SetWorldScale3D(FVector(0.3f));
+
 }
 
 ABaseProjectile::ABaseProjectile()

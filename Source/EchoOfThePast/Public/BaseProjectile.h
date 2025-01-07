@@ -26,6 +26,9 @@ class ECHOOFTHEPAST_API ABaseProjectile : public AActor
 	UFUNCTION()
 	float ComputeDamageAmount() const;
 
+	UFUNCTION()
+	void SpawnHitParticles() const;
+
 public:
 	ABaseProjectile();
 
@@ -44,6 +47,9 @@ public:
 	/** Please add a variable description */
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Default")
 	TObjectPtr<USphereComponent> Collision;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default")
+	UParticleSystem* HitParticles;
 
 	/** Please add a variable description */
 	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category="Default")

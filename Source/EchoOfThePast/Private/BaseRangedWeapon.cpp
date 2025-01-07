@@ -5,6 +5,23 @@
 #include "Components/ArrowComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "Particles/ParticleSystemComponent.h"
+
+void ABaseRangedWeapon::SpawnParticlesAtMuzzle(UParticleSystem* ParticleSystem) const
+{
+	if (ParticleSystem)
+	{
+		// Use UGameplayStatics to spawn the emitter
+		UParticleSystemComponent* ParticleComponent = UGameplayStatics::SpawnEmitterAtLocation(
+			GetWorld(),
+			ParticleSystem,
+			FireSocket->GetComponentLocation(),  // Location to spawn
+			FireSocket->GetComponentRotation() - FRotator(90.0f, 0.0f, 0.0f),  // Rotation to spawn
+			true                 // Auto destroy
+		);
+		ParticleComponent->SetWorldScale3D(FVector(0.5f));
+	}
+}
 
 ABaseRangedWeapon::ABaseRangedWeapon()
 {
@@ -65,6 +82,8 @@ void ABaseRangedWeapon::SpawnProjectile()
 			ProjectileClass, SpawnTransform))
 		{
 			--CurrentAmmo;
+			SpawnParticlesAtMuzzle(SmokeParticles);
+			SpawnParticlesAtMuzzle(SparksParticles);
 			OnBulletFired.Broadcast();
 			Projectile->DamageAmount = CurrentDamageModifier * DamageAmount;
 			Projectile->CritRate = CritRate;

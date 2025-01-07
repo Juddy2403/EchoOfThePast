@@ -12,5 +12,7 @@ bool AEnemyBaseRangedWeapon::GetProjectileTargetLocation(FVector& targetLocation
 
 void AEnemyBaseRangedWeapon::Attack(const bool IsStart, const float DamageModifier)
 {
+	// The enemy doesn't need ammo. This is to make sure he shoots every time
+	CurrentAmmo = 1;
 	SpawnProjectile();
 }
