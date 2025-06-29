@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/27.0.9 Chrome/134.0.6998.205 Electron/35.4.0 Safari/537.36" version="27.0.9">
   <diagram name="Page-1" id="vQkjQPH0nNXgujTa5CfO">
-    <mxGraphModel dx="2127" dy="1860" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#2B2B2B" math="0" shadow="0">
+    <mxGraphModel dx="2063" dy="1822" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#2B2B2B" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -117,9 +117,6 @@
         <mxCell id="upC0CkmydvSWev3tTeEb-20" value="&lt;font face=&quot;Lucida Console&quot; style=&quot;font-size: 14px;&quot;&gt;Weapon C++&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#3A5431;fontColor=#ffffff;fillColor=#6d8764;labelBackgroundColor=none;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;resizable=1;movable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" vertex="1">
           <mxGeometry x="1550" y="290" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="upC0CkmydvSWev3tTeEb-42" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" parent="1" source="upC0CkmydvSWev3tTeEb-22" target="upC0CkmydvSWev3tTeEb-39" edge="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
         <mxCell id="upC0CkmydvSWev3tTeEb-43" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=classic;startFill=0;endArrow=none;" parent="1" source="upC0CkmydvSWev3tTeEb-22" target="upC0CkmydvSWev3tTeEb-40" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
@@ -152,14 +149,14 @@
         <mxCell id="upC0CkmydvSWev3tTeEb-37" value="Ranged enemy" style="text;strokeColor=#BD7000;fillColor=#f0a30a;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontFamily=Lucida Console;fontColor=#000000;" parent="upC0CkmydvSWev3tTeEb-30" vertex="1">
           <mxGeometry y="150" width="220" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="HZ8Az6_HmTzBcgyhWsYw-2" value="Minimap update" style="text;strokeColor=#BD7000;fillColor=#f0a30a;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontFamily=Lucida Console;fontColor=#000000;" vertex="1" parent="upC0CkmydvSWev3tTeEb-30">
+        <mxCell id="HZ8Az6_HmTzBcgyhWsYw-2" value="Minimap update" style="text;strokeColor=#BD7000;fillColor=#f0a30a;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontFamily=Lucida Console;fontColor=#000000;" parent="upC0CkmydvSWev3tTeEb-30" vertex="1">
           <mxGeometry y="180" width="220" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="HZ8Az6_HmTzBcgyhWsYw-3" value="Weapon popup update" style="text;strokeColor=#BD7000;fillColor=#f0a30a;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontFamily=Lucida Console;fontColor=#000000;" vertex="1" parent="upC0CkmydvSWev3tTeEb-30">
+        <mxCell id="HZ8Az6_HmTzBcgyhWsYw-3" value="Weapon popup update" style="text;strokeColor=#BD7000;fillColor=#f0a30a;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontFamily=Lucida Console;fontColor=#000000;" parent="upC0CkmydvSWev3tTeEb-30" vertex="1">
           <mxGeometry y="210" width="220" height="30" as="geometry" />
         </mxCell>
         <mxCell id="upC0CkmydvSWev3tTeEb-39" value="&lt;font face=&quot;Lucida Console&quot; style=&quot;font-size: 14px; color: rgb(250, 250, 250);&quot;&gt;Game Instance&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#D0CEE2;fontColor=#1A1A1A;fillColor=#5D7F99;labelBackgroundColor=none;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;resizable=0;" parent="1" vertex="1">
-          <mxGeometry x="1310" y="700" width="120" height="60" as="geometry" />
+          <mxGeometry x="1200" y="860" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="upC0CkmydvSWev3tTeEb-47" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="upC0CkmydvSWev3tTeEb-40" target="upC0CkmydvSWev3tTeEb-46" edge="1">
           <mxGeometry relative="1" as="geometry" />
@@ -167,17 +164,14 @@
         <mxCell id="upC0CkmydvSWev3tTeEb-40" value="&lt;font face=&quot;Lucida Console&quot; style=&quot;font-size: 14px; color: rgb(250, 250, 250);&quot;&gt;Player Controller&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#D0CEE2;fontColor=#1A1A1A;fillColor=#5D7F99;labelBackgroundColor=none;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;resizable=0;" parent="1" vertex="1">
           <mxGeometry x="1610" y="700" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="HZ8Az6_HmTzBcgyhWsYw-7" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="upC0CkmydvSWev3tTeEb-46" target="upC0CkmydvSWev3tTeEb-22">
+        <mxCell id="HZ8Az6_HmTzBcgyhWsYw-7" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="upC0CkmydvSWev3tTeEb-46" target="upC0CkmydvSWev3tTeEb-22" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="HZ8Az6_HmTzBcgyhWsYw-8" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="upC0CkmydvSWev3tTeEb-46" target="upC0CkmydvSWev3tTeEb-39">
+        <mxCell id="HZ8Az6_HmTzBcgyhWsYw-8" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" parent="1" source="upC0CkmydvSWev3tTeEb-46" target="upC0CkmydvSWev3tTeEb-39" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="upC0CkmydvSWev3tTeEb-46" value="&lt;font face=&quot;Lucida Console&quot; style=&quot;font-size: 14px; color: rgb(250, 250, 250);&quot;&gt;GameMode&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#D0CEE2;fontColor=#1A1A1A;fillColor=#5D7F99;labelBackgroundColor=none;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;resizable=0;" parent="1" vertex="1">
           <mxGeometry x="1430" y="860" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="HZ8Az6_HmTzBcgyhWsYw-1" value="The way the stats are set at the start&lt;div&gt;of a level is weird. The player should get&amp;nbsp;&lt;/div&gt;&lt;div&gt;the stats on begin play instead.&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontFamily=Helvetica;fontSize=12;fontColor=default;labelBackgroundColor=none;" vertex="1" parent="1">
-          <mxGeometry x="1060" y="700" width="240" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
