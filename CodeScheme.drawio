@@ -120,7 +120,7 @@
         <mxCell id="upC0CkmydvSWev3tTeEb-42" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" parent="1" source="upC0CkmydvSWev3tTeEb-22" target="upC0CkmydvSWev3tTeEb-39" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="upC0CkmydvSWev3tTeEb-43" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" parent="1" source="upC0CkmydvSWev3tTeEb-22" target="upC0CkmydvSWev3tTeEb-40" edge="1">
+        <mxCell id="upC0CkmydvSWev3tTeEb-43" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=classic;startFill=0;endArrow=none;" parent="1" source="upC0CkmydvSWev3tTeEb-22" target="upC0CkmydvSWev3tTeEb-40" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="upC0CkmydvSWev3tTeEb-22" value="&lt;font face=&quot;Lucida Console&quot; style=&quot;font-size: 14px; color: rgb(250, 250, 250);&quot;&gt;Player char&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#D0CEE2;fontColor=#1A1A1A;fillColor=#5D7F99;labelBackgroundColor=none;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;resizable=0;" parent="1" vertex="1">
@@ -137,25 +137,25 @@
             <mxRectangle x="-760" y="-40" width="140" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="upC0CkmydvSWev3tTeEb-44" value="Add a HUD Class to manage Widgets" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontFamily=Lucida Console;fontColor=#F5F5F5;" parent="upC0CkmydvSWev3tTeEb-30" vertex="1">
+        <mxCell id="upC0CkmydvSWev3tTeEb-44" value="Add a HUD Class to manage Widgets" style="text;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontFamily=Lucida Console;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="upC0CkmydvSWev3tTeEb-30" vertex="1">
           <mxGeometry y="30" width="220" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="upC0CkmydvSWev3tTeEb-31" value="C++ Logic" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontFamily=Lucida Console;fontColor=#F5F5F5;" parent="upC0CkmydvSWev3tTeEb-30" vertex="1">
+        <mxCell id="upC0CkmydvSWev3tTeEb-31" value="C++ Logic" style="text;strokeColor=#BD7000;fillColor=#f0a30a;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontFamily=Lucida Console;fontColor=#000000;" parent="upC0CkmydvSWev3tTeEb-30" vertex="1">
           <mxGeometry y="60" width="220" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="upC0CkmydvSWev3tTeEb-38" value="Camera Dade Obj" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontFamily=Lucida Console;fontColor=#F5F5F5;" parent="upC0CkmydvSWev3tTeEb-30" vertex="1">
+        <mxCell id="upC0CkmydvSWev3tTeEb-38" value="Camera Dade Obj" style="text;strokeColor=#BD7000;fillColor=#f0a30a;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontFamily=Lucida Console;fontColor=#000000;" parent="upC0CkmydvSWev3tTeEb-30" vertex="1">
           <mxGeometry y="90" width="220" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="upC0CkmydvSWev3tTeEb-32" value="Montage event system" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontFamily=Lucida Console;fontColor=#F5F5F5;" parent="upC0CkmydvSWev3tTeEb-30" vertex="1">
+        <mxCell id="upC0CkmydvSWev3tTeEb-32" value="Montage event system" style="text;strokeColor=#BD7000;fillColor=#f0a30a;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontFamily=Lucida Console;fontColor=#000000;" parent="upC0CkmydvSWev3tTeEb-30" vertex="1">
           <mxGeometry y="120" width="220" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="upC0CkmydvSWev3tTeEb-37" value="Ranged enemy" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontFamily=Lucida Console;fontColor=#F5F5F5;" parent="upC0CkmydvSWev3tTeEb-30" vertex="1">
+        <mxCell id="upC0CkmydvSWev3tTeEb-37" value="Ranged enemy" style="text;strokeColor=#BD7000;fillColor=#f0a30a;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontFamily=Lucida Console;fontColor=#000000;" parent="upC0CkmydvSWev3tTeEb-30" vertex="1">
           <mxGeometry y="150" width="220" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="HZ8Az6_HmTzBcgyhWsYw-2" value="Minimap update" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontFamily=Lucida Console;fontColor=#F5F5F5;" vertex="1" parent="upC0CkmydvSWev3tTeEb-30">
+        <mxCell id="HZ8Az6_HmTzBcgyhWsYw-2" value="Minimap update" style="text;strokeColor=#BD7000;fillColor=#f0a30a;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontFamily=Lucida Console;fontColor=#000000;" vertex="1" parent="upC0CkmydvSWev3tTeEb-30">
           <mxGeometry y="180" width="220" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="HZ8Az6_HmTzBcgyhWsYw-3" value="Weapon popup update" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontFamily=Lucida Console;fontColor=#F5F5F5;" vertex="1" parent="upC0CkmydvSWev3tTeEb-30">
+        <mxCell id="HZ8Az6_HmTzBcgyhWsYw-3" value="Weapon popup update" style="text;strokeColor=#BD7000;fillColor=#f0a30a;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontFamily=Lucida Console;fontColor=#000000;" vertex="1" parent="upC0CkmydvSWev3tTeEb-30">
           <mxGeometry y="210" width="220" height="30" as="geometry" />
         </mxCell>
         <mxCell id="upC0CkmydvSWev3tTeEb-39" value="&lt;font face=&quot;Lucida Console&quot; style=&quot;font-size: 14px; color: rgb(250, 250, 250);&quot;&gt;Game Instance&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#D0CEE2;fontColor=#1A1A1A;fillColor=#5D7F99;labelBackgroundColor=none;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;resizable=0;" parent="1" vertex="1">
@@ -165,13 +165,19 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="upC0CkmydvSWev3tTeEb-40" value="&lt;font face=&quot;Lucida Console&quot; style=&quot;font-size: 14px; color: rgb(250, 250, 250);&quot;&gt;Player Controller&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#D0CEE2;fontColor=#1A1A1A;fillColor=#5D7F99;labelBackgroundColor=none;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;resizable=0;" parent="1" vertex="1">
-          <mxGeometry x="1510" y="690" width="120" height="60" as="geometry" />
+          <mxGeometry x="1610" y="700" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HZ8Az6_HmTzBcgyhWsYw-7" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="upC0CkmydvSWev3tTeEb-46" target="upC0CkmydvSWev3tTeEb-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HZ8Az6_HmTzBcgyhWsYw-8" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="upC0CkmydvSWev3tTeEb-46" target="upC0CkmydvSWev3tTeEb-39">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="upC0CkmydvSWev3tTeEb-46" value="&lt;font face=&quot;Lucida Console&quot; style=&quot;font-size: 14px; color: rgb(250, 250, 250);&quot;&gt;GameMode&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#D0CEE2;fontColor=#1A1A1A;fillColor=#5D7F99;labelBackgroundColor=none;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;resizable=0;" parent="1" vertex="1">
-          <mxGeometry x="1510" y="820" width="120" height="60" as="geometry" />
+          <mxGeometry x="1430" y="860" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="HZ8Az6_HmTzBcgyhWsYw-1" value="The way the stats are set at the start&lt;div&gt;of a level is weird. The player should get&amp;nbsp;&lt;/div&gt;&lt;div&gt;the stats on begin play instead.&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontFamily=Helvetica;fontSize=12;fontColor=default;labelBackgroundColor=none;" vertex="1" parent="1">
-          <mxGeometry x="1240" y="770" width="240" height="60" as="geometry" />
+          <mxGeometry x="1060" y="700" width="240" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
