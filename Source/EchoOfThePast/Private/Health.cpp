@@ -57,3 +57,8 @@ void UHealth::DoDamage_Implementation(float amount, bool isCrit, bool& isDead)
 	isDead = IsDead();
 }
 
+void UHealth::CallOnDeathAfterDelay()
+{
+	OnDeathAfterDelay.Broadcast();
+}
+

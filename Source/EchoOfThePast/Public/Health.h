@@ -41,6 +41,13 @@ public:
 	UPROPERTY(BlueprintAssignable, EditDefaultsOnly)
 	FOnDeath OnDeath;
 
+	DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnDeathAfterDelay);
+	UPROPERTY(BlueprintAssignable, EditDefaultsOnly)
+	FOnDeathAfterDelay OnDeathAfterDelay;
+
+	UFUNCTION(BlueprintCallable)
+	void CallOnDeathAfterDelay();
+	
 	/** Please add a variable description */
 	DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnDamage, float, DamageAmount, bool, IsCrit);
 	UPROPERTY(BlueprintAssignable, EditDefaultsOnly)

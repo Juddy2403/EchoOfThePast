@@ -11,14 +11,14 @@ struct FPlayerStats
 	GENERATED_BODY()
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	float Health;
+	float Health = 0.0f;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	int32 Ammo;
+	int32 Ammo = 0.f;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	TSubclassOf<ABaseWeapon> EquippedGun;
+	TSubclassOf<ABaseWeapon> EquippedGun = nullptr;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	TSubclassOf<ABaseWeapon> EquippedSword;
+	TSubclassOf<ABaseWeapon> EquippedSword = nullptr;
 };
