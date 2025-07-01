@@ -1,0 +1,112 @@
+[
+	{
+		"Name": "L_MainMenu",
+		"NextLevelName": "L_Demo",
+		"ShouldKeepPlayerStats": false,
+		"HPModifier": 1,
+		"SpeedModifier": 1,
+		"DamageModifier": 1,
+		"CombatEnabled": false,
+		"HasTimer": false
+	},
+	{
+		"Name": "L_Demo",
+		"NextLevelName": "L_Level0_1",
+		"ShouldKeepPlayerStats": false,
+		"HPModifier": 1,
+		"SpeedModifier": 1,
+		"DamageModifier": 1,
+		"CombatEnabled": true,
+		"HasTimer": false
+	},
+	{
+		"Name": "L_Level0_1",
+		"NextLevelName": "L_Level1",
+		"ShouldKeepPlayerStats": false,
+		"HPModifier": 1,
+		"SpeedModifier": 1,
+		"DamageModifier": 1,
+		"CombatEnabled": false,
+		"HasTimer": false
+	},
+	{
+		"Name": "L_Level1",
+		"NextLevelName": "L_Level0_2",
+		"ShouldKeepPlayerStats": false,
+		"HPModifier": 1,
+		"SpeedModifier": 1,
+		"DamageModifier": 1,
+		"CombatEnabled": true,
+		"HasTimer": true
+	},
+	{
+		"Name": "L_Level0_2",
+		"NextLevelName": "L_Level2_1",
+		"ShouldKeepPlayerStats": false,
+		"HPModifier": 1,
+		"SpeedModifier": 1,
+		"DamageModifier": 1,
+		"CombatEnabled": false,
+		"HasTimer": false
+	},
+	{
+		"Name": "L_Level2_1",
+		"NextLevelName": "L_Level2_2",
+		"ShouldKeepPlayerStats": true,
+		"HPModifier": 0.80000000000000004,
+		"SpeedModifier": 0.90000000000000002,
+		"DamageModifier": 0.80000000000000004,
+		"CombatEnabled": true,
+		"HasTimer": true
+	},
+	{
+		"Name": "L_Level2_2",
+		"NextLevelName": "L_Level2_3",
+		"ShouldKeepPlayerStats": true,
+		"HPModifier": 0.80000000000000004,
+		"SpeedModifier": 0.90000000000000002,
+		"DamageModifier": 0.80000000000000004,
+		"CombatEnabled": true,
+		"HasTimer": true
+	},
+	{
+		"Name": "L_Level2_3",
+		"NextLevelName": "L_Level2_4",
+		"ShouldKeepPlayerStats": true,
+		"HPModifier": 0.80000000000000004,
+		"SpeedModifier": 0.90000000000000002,
+		"DamageModifier": 0.80000000000000004,
+		"CombatEnabled": true,
+		"HasTimer": true
+	},
+	{
+		"Name": "L_Level2_4",
+		"NextLevelName": "L_Level0_3",
+		"ShouldKeepPlayerStats": false,
+		"HPModifier": 0.80000000000000004,
+		"SpeedModifier": 0.90000000000000002,
+		"DamageModifier": 0.80000000000000004,
+		"CombatEnabled": true,
+		"HasTimer": true
+	},
+	{
+		"Name": "L_Level0_3",
+		"NextLevelName": "L_Level3",
+		"ShouldKeepPlayerStats": false,
+		"HPModifier": 0.80000000000000004,
+		"SpeedModifier": 0.90000000000000002,
+		"DamageModifier": 0.80000000000000004,
+		"CombatEnabled": false,
+		"HasTimer": false
+	},
+	{
+		"Name": "L_Level3",
+		"NextLevelName": "L_Level4",
+		"ShouldKeepPlayerStats": false,
+		"HPModifier": 0.69999999999999996,
+		"SpeedModifier": 0.80000000000000004,
+		"DamageModifier": 0.69999999999999996,
+		"CombatEnabled": true,
+		"HasTimer": true
+	}
+]
