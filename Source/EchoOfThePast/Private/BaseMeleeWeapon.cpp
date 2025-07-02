@@ -2,7 +2,7 @@
 
 
 #include "BaseMeleeWeapon.h"
-#include "Health.h"
+#include "Components/HealthComponent.h"
 #include "Kismet/GameplayStatics.h"
 
 void ABaseMeleeWeapon::Attack(const bool IsStart, const float DamageModifier)
@@ -28,7 +28,7 @@ void ABaseMeleeWeapon::Attack(const bool IsStart, const float DamageModifier)
 				continue;
 
 			//get UHealth component from the hit actor
-			if (UHealth* HealthComponent = HitActor->FindComponentByClass<UHealth>())
+			if (UHealthComponent* HealthComponent = HitActor->FindComponentByClass<UHealthComponent>())
 			{
 				bool bIsDead = false;
 				float damageAmount = ComputeDamageAmount();

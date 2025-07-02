@@ -1,6 +1,6 @@
 #include "BaseProjectile.h"
 
-#include "Health.h"
+#include "Components/HealthComponent.h"
 #include "Components/PointLightComponent.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
@@ -34,7 +34,7 @@ void ABaseProjectile::ProcessCollision(AActor* OtherActor)
 {
 	if (OtherActor->ActorHasTag(IgnoreTag)) return;
 	//get UHealth component from the hit actor
-	if (UHealth* HealthComponent = OtherActor->FindComponentByClass<UHealth>())
+	if (UHealthComponent* HealthComponent = OtherActor->FindComponentByClass<UHealthComponent>())
 	{
 		bool bIsDead = false;
 		float damageAmount = ComputeDamageAmount();
