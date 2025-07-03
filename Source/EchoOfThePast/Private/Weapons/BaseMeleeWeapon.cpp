@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "BaseMeleeWeapon.h"
+#include "Weapons/BaseMeleeWeapon.h"
 #include "Components/HealthComponent.h"
 #include "Kismet/GameplayStatics.h"
 

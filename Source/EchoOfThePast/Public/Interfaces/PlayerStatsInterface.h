@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "DataStructs/PlayerStatsStruct.h"
+#include "DataTypes/PlayerStatsStruct.h"
 #include "UObject/Interface.h"
 #include "PlayerStatsInterface.generated.h"
 

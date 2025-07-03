@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BaseRangedWeapon.h"
-#include "BaseProjectile.h"
+#include "Weapons/BaseRangedWeapon.h"
+#include "Weapons/BaseProjectile.h"
 #include "Components/ArrowComponent.h"
 #include "Components/AmmoManagerComponent.h"
 #include "Kismet/GameplayStatics.h"

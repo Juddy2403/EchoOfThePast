@@ -1,5 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "MyGameInstance.h"
+#include "GameInstances/MyGameInstance.h"
 
 #include "Components/TimerComponent.h"
 #include "GameFramework/GameModeBase.h"

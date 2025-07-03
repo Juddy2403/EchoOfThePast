@@ -1,4 +1,4 @@
-#include "BaseProjectile.h"
+#include "Weapons/BaseProjectile.h"
 
 #include "Components/HealthComponent.h"
 #include "Components/PointLightComponent.h"
