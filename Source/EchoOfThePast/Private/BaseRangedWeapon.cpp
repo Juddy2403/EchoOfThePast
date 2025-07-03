@@ -3,6 +3,7 @@
 #include "BaseRangedWeapon.h"
 #include "BaseProjectile.h"
 #include "Components/ArrowComponent.h"
+#include "Components/AmmoManagerComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Particles/ParticleSystemComponent.h"
@@ -56,7 +57,7 @@ bool ABaseRangedWeapon::GetProjectileTargetLocation(FVector& targetLocation) con
 void ABaseRangedWeapon::SpawnProjectile() 
 {
 	FVector TargetLocation;
-	if (CurrentAmmo <= 0)
+	if (!AmmoManagerComponent->HasAmmo())
 	{
 		GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
 		return;
@@ -81,10 +82,9 @@ void ABaseRangedWeapon::SpawnProjectile()
 		if (ABaseProjectile* Projectile = GetWorld()->SpawnActorDeferred<ABaseProjectile>(
 			ProjectileClass, SpawnTransform))
 		{
-			--CurrentAmmo;
+			AmmoManagerComponent->ConsumeAmmo();
 			SpawnParticlesAtMuzzle(SmokeParticles);
 			SpawnParticlesAtMuzzle(SparksParticles);
-			OnBulletFired.Broadcast();
 			Projectile->DamageAmount = CurrentDamageModifier * DamageAmount;
 			Projectile->CritRate = CritRate;
 			if (GetAttachParentActor()->Tags.Num() != 0) Projectile->IgnoreTag = GetAttachParentActor()->Tags[0];
@@ -101,7 +101,7 @@ void ABaseRangedWeapon::Attack(const bool IsStart, const float DamageModifier)
 	if (IsStart)
 	{
 		if (!bCanShoot) return;
-		if (CurrentAmmo <= 0) return;
+		if (!AmmoManagerComponent->HasAmmo()) return;
 		if (bHasStartedShootingLoop) return;
 		bCanShoot = false;
 		bHasStartedShootingLoop = true;
@@ -115,5 +115,16 @@ void ABaseRangedWeapon::Attack(const bool IsStart, const float DamageModifier)
 	{
 		bHasStartedShootingLoop = false;
 		GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+	}
+}
+
+void ABaseRangedWeapon::BeginPlay()
+{
+	Super::BeginPlay();
+	if (AActor* WeaponOwner = GetOwner()) AmmoManagerComponent = WeaponOwner->GetComponentByClass<UAmmoManagerComponent>();
+	
+	if (AmmoManagerComponent == nullptr)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("AmmoManagerComponent is null. Please add it to the owner actor."));
 	}
 }

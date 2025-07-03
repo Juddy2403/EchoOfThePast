@@ -27,5 +27,5 @@ public:
 	void SetPlayerStats(const FPlayerStatsStruct& Stats);
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent) 
-	FPlayerStatsStruct GetPlayerStats(); 
+	FPlayerStatsStruct GetPlayerStats();
 };

@@ -6,6 +6,7 @@
 #include "BaseWeapon.h"
 #include "BaseRangedWeapon.generated.h"
 
+class UAmmoManagerComponent;
 class ABaseProjectile;
 class UArrowComponent;
 UCLASS()
@@ -26,8 +27,10 @@ class ECHOOFTHEPAST_API ABaseRangedWeapon : public ABaseWeapon
 
 protected:
 	ABaseRangedWeapon();
-	int CurrentAmmo = 0;
 
+	UPROPERTY()
+	UAmmoManagerComponent* AmmoManagerComponent;
+	
 	UFUNCTION()
 	virtual bool GetProjectileTargetLocation(FVector& targetLocation) const;
 
@@ -50,14 +53,6 @@ public:
 	UParticleSystem* SmokeParticles;
 
 	virtual void Attack(const bool IsStart, const float DamageModifier = 1) override;
-
-	UFUNCTION(BlueprintCallable, Category="Default")
-	void SetAmmo(const int AmmoNumber) { CurrentAmmo = AmmoNumber; }
-	
-	UFUNCTION(BlueprintCallable, Category="Default")
-	int GetAmmo() const { return CurrentAmmo; }
-
-	DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnBulletFired);
-	UPROPERTY(BlueprintAssignable, EditDefaultsOnly)
-	FOnBulletFired OnBulletFired;
+protected:
+	virtual void BeginPlay() override;
 };
