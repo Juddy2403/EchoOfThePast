@@ -53,6 +53,7 @@ public:
 	UParticleSystem* SmokeParticles;
 
 	virtual void Attack(const bool IsStart, const float DamageModifier = 1) override;
+	
 protected:
 	virtual void BeginPlay() override;
 };

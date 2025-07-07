@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "DataTypes/DamageTypeEnum.h"
 #include "GameFramework/Actor.h"
 #include "BaseWeapon.generated.h"
 
@@ -32,12 +33,16 @@ protected:
 	UPROPERTY()
 	float CurrentDamageModifier = 1;
 
+	
 public:	
 	// Called every frame
 	//virtual void Tick(float DeltaTime) override;
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Default")
 	double DamageAmount;
-
+	
+	UPROPERTY(BlueprintReadOnly)
+	EDamageTypeEnum Type = EDamageTypeEnum::None;
+	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Default")
 	float CritRate;
 	// Attack event

@@ -3,6 +3,7 @@
 
 #include "Weapons/BaseMeleeWeapon.h"
 #include "Components/HealthComponent.h"
+#include "DataTypes/DamageTypeEnum.h"
 #include "Kismet/GameplayStatics.h"
 
 void ABaseMeleeWeapon::Attack(const bool IsStart, const float DamageModifier)
@@ -93,4 +94,9 @@ float ABaseMeleeWeapon::ComputeDamageAmount() const
 		return FMath::RoundToFloat(DamageAmount * CurrentDamageModifier * CritMultiplier);
 	}
 	return DamageAmount * CurrentDamageModifier;
+}
+
+ABaseMeleeWeapon::ABaseMeleeWeapon()
+{
+	Type = EDamageTypeEnum::Melee;
 }

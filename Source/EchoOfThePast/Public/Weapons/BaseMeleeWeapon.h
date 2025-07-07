@@ -17,6 +17,7 @@ class ECHOOFTHEPAST_API ABaseMeleeWeapon : public ABaseWeapon
 	bool ExtractHitResult(TArray<FHitResult>& HitResults) const;
 	float ComputeDamageAmount() const;
 public:
+	ABaseMeleeWeapon();
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Default")
 	float Speed;
 	

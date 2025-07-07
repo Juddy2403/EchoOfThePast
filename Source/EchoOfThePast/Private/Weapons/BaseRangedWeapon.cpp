@@ -4,6 +4,7 @@
 #include "Weapons/BaseProjectile.h"
 #include "Components/ArrowComponent.h"
 #include "Components/AmmoManagerComponent.h"
+#include "DataTypes/DamageTypeEnum.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Particles/ParticleSystemComponent.h"
@@ -26,6 +27,7 @@ void ABaseRangedWeapon::SpawnParticlesAtMuzzle(UParticleSystem* ParticleSystem) 
 
 ABaseRangedWeapon::ABaseRangedWeapon()
 {
+	Type = EDamageTypeEnum::Ranged;
 	FireSocket = CreateDefaultSubobject<UArrowComponent>(TEXT("FireSocket"));
 	FireSocket->SetupAttachment(RootComponent);
 }

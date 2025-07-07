@@ -1,6 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 #include "Weapons/BaseWeapon.h"
 
+#include "DataTypes/DamageTypeEnum.h"
+
 // Sets default values
 ABaseWeapon::ABaseWeapon()
 {
@@ -21,4 +23,3 @@ void ABaseWeapon::BeginPlay()
 {
 	Super::BeginPlay();
 }
-
