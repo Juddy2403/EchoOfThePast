@@ -26,7 +26,6 @@ void ULevelManagerComponent::OpenLevelWithTransition(const FString& LevelName)
 		FTimerDelegate::CreateLambda([this, LevelName]()
 		{
 			UGameplayStatics::OpenLevel(this, static_cast<FName>(LevelName));
-			OnLevelOpened.Broadcast();
 		}),
 		1.0f,
 		false
@@ -44,7 +43,6 @@ void ULevelManagerComponent::ReloadLevel()
 		UGameplayStatics::OpenLevel(this, FName("L_Level2_1"));
 	}
 	else UGameplayStatics::OpenLevel(this, static_cast<FName>(CurrentLevelName));
-	OnLevelOpened.Broadcast();
 }
 
 void ULevelManagerComponent::LoadNextLevel()
@@ -64,7 +62,6 @@ void ULevelManagerComponent::LoadNextLevel()
 		}
 	}
 	OpenLevelWithTransition(LevelConfig->NextLevelName.ToString());
-	OnLevelOpened.Broadcast();
 }
 
 // Called when the game starts

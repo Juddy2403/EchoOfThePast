@@ -28,10 +28,6 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Default")
 	void LoadNextLevel();
 
-	DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnLevelOpened);
-	UPROPERTY(BlueprintAssignable, EditDefaultsOnly)
-	FOnLevelOpened OnLevelOpened;
-
 	DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnOpenLevelTransition);
 	UPROPERTY(BlueprintAssignable, EditDefaultsOnly)
 	FOnOpenLevelTransition OnOpenLevelTransition;

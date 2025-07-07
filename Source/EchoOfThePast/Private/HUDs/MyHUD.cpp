@@ -1,4 +1,6 @@
 #include "HUDs/MyHUD.h"
+
+#include "MyBlueprintFunctionLibrary.h"
 #include "Blueprint/UserWidget.h"
 #include "Blueprint/WidgetLayoutLibrary.h"
 #include "Components/AmmoManagerComponent.h"
@@ -181,16 +183,9 @@ void AMyHUD::SetCursorPosition() const
 {
 	APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
 	if (!PlayerController) return;
-	FHitResult HitResult;
-	// Trace custom channel to detect cursor only on player plane
-	bool bHit = PlayerController->
-		GetHitResultUnderCursorByChannel(ETraceTypeQuery::TRACE_CursorPlane, false, HitResult);
-	if (!bHit || !HitResult.bBlockingHit) return;
-	FVector PosToProject = HitResult.Location;
-	// Adjust Z position to be above the player character's mesh 
-	// TODO:kinda hard coded and bad
-	PosToProject.Z = UGameplayStatics::GetPlayerCharacter(
-		GetWorld(), 0)->GetMesh()->GetComponentLocation().Z + 110.f;
+	FVector PosToProject = FVector::ZeroVector;
+	bool hit = UMyBlueprintFunctionLibrary::GetCursorPosition(this, PosToProject);
+	if (!hit) return;
 	FVector2D ScreenPosition;
 	UWidgetLayoutLibrary::ProjectWorldLocationToWidgetPosition(
 		PlayerController, PosToProject, ScreenPosition, false);
