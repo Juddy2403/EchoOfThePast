@@ -26,10 +26,10 @@ class ECHOOFTHEPAST_API ABaseRangedWeapon : public ABaseWeapon
 	bool bCanShoot = true;
 
 protected:
-	ABaseRangedWeapon();
+	ABaseRangedWeapon(const FObjectInitializer& ObjInit);
 
 	UPROPERTY()
-	UAmmoManagerComponent* AmmoManagerComponent;
+	TObjectPtr<UAmmoManagerComponent> AmmoManagerComponent;
 	
 	UFUNCTION()
 	virtual bool GetProjectileTargetLocation(FVector& targetLocation) const;

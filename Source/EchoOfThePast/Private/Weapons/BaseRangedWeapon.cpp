@@ -25,7 +25,7 @@ void ABaseRangedWeapon::SpawnParticlesAtMuzzle(UParticleSystem* ParticleSystem) 
 	}
 }
 
-ABaseRangedWeapon::ABaseRangedWeapon()
+ABaseRangedWeapon::ABaseRangedWeapon(const FObjectInitializer& ObjInit) : Super(ObjInit)
 {
 	Type = EDamageTypeEnum::Ranged;
 	FireSocket = CreateDefaultSubobject<UArrowComponent>(TEXT("FireSocket"));

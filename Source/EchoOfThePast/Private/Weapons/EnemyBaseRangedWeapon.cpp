@@ -12,14 +12,12 @@ bool AEnemyBaseRangedWeapon::GetProjectileTargetLocation(FVector& targetLocation
 	return true;
 }
 
-AEnemyBaseRangedWeapon::AEnemyBaseRangedWeapon(): ABaseRangedWeapon()
-{
-	AmmoManagerComponent = CreateDefaultSubobject<UAmmoManagerComponent>(TEXT("AmmoManagerComponent"));
-}
-
 void AEnemyBaseRangedWeapon::Attack(const bool IsStart, const float DamageModifier)
 {
 	// The enemy doesn't need ammo. This is to make sure he shoots every time
-	AmmoManagerComponent->AddAmmo(1);
-	SpawnProjectile();
+	if (IsValid(AmmoManagerComponent))
+	{
+		AmmoManagerComponent->AddAmmo(1);
+		SpawnProjectile();
+	}
 }

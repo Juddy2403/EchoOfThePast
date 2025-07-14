@@ -14,7 +14,7 @@ class ECHOOFTHEPAST_API ABaseWeapon : public AActor
 	
 public:	
 	// Sets default values for this actor's properties
-	ABaseWeapon();
+	ABaseWeapon(const FObjectInitializer& ObjInit);
 
 	// The skeletal mesh of the weapon
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Default")
@@ -23,20 +23,15 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="Default")
 	FName SocketName;
 
+	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category="Default")
+	TSubclassOf<AActor> WeaponPickupClass;
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
 	UPROPERTY(EditAnywhere, Category="Default")
 	TObjectPtr<USoundBase> AttackSound;
-
+	
 	UPROPERTY()
 	float CurrentDamageModifier = 1;
-
-	
 public:	
-	// Called every frame
-	//virtual void Tick(float DeltaTime) override;
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Default")
 	double DamageAmount;
 	

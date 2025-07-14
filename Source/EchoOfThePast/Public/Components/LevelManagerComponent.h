@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "DataTypes/LevelConfigStruct.h"
 #include "LevelManagerComponent.generated.h"
 
 
@@ -31,6 +32,8 @@ public:
 	DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnOpenLevelTransition);
 	UPROPERTY(BlueprintAssignable, EditDefaultsOnly)
 	FOnOpenLevelTransition OnOpenLevelTransition;
+
+	FSLevelConfigStruct* GetCurrentLevelConfig() const;
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;

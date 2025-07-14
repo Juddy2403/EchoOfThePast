@@ -3,7 +3,8 @@
 #include "CoreMinimal.h"
 #include "UObject/Interface.h"
 #include "PlayerStatsStruct.generated.h"
-class ABaseWeapon;
+class ABaseMeleeWeapon;
+class ABaseRangedWeapon;
 
 USTRUCT(BlueprintType)
 struct FPlayerStatsStruct
@@ -17,8 +18,8 @@ struct FPlayerStatsStruct
 	int32 Ammo = 0.f;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	TSubclassOf<ABaseWeapon> EquippedGun = nullptr;
+	TSubclassOf<ABaseRangedWeapon> EquippedGun = nullptr;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	TSubclassOf<ABaseWeapon> EquippedSword = nullptr;
+	TSubclassOf<ABaseMeleeWeapon> EquippedSword = nullptr;
 };

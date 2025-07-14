@@ -47,10 +47,7 @@ void ULevelManagerComponent::ReloadLevel()
 
 void ULevelManagerComponent::LoadNextLevel()
 {
-	FString Name = UGameplayStatics::GetCurrentLevelName(GetWorld());
-
-	FSLevelConfigStruct* LevelConfig = LevelConfigTable->FindRow<FSLevelConfigStruct>(
-		*Name, TEXT("Get Level Config Row"));
+	FSLevelConfigStruct* LevelConfig = GetCurrentLevelConfig();
 
 	if (!LevelConfig) return;
 	if (LevelConfig->ShouldKeepPlayerStats)
@@ -62,6 +59,12 @@ void ULevelManagerComponent::LoadNextLevel()
 		}
 	}
 	OpenLevelWithTransition(LevelConfig->NextLevelName.ToString());
+}
+
+FSLevelConfigStruct* ULevelManagerComponent::GetCurrentLevelConfig() const
+{
+	FString Name = UGameplayStatics::GetCurrentLevelName(GetWorld());
+	return LevelConfigTable->FindRow<FSLevelConfigStruct>(*Name, TEXT("Get Level Config Row"));
 }
 
 // Called when the game starts

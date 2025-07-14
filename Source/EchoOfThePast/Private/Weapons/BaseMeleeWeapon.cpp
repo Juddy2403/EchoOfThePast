@@ -96,7 +96,7 @@ float ABaseMeleeWeapon::ComputeDamageAmount() const
 	return DamageAmount * CurrentDamageModifier;
 }
 
-ABaseMeleeWeapon::ABaseMeleeWeapon()
+ABaseMeleeWeapon::ABaseMeleeWeapon(const FObjectInitializer& ObjInit) : Super(ObjInit)
 {
 	Type = EDamageTypeEnum::Melee;
 }
