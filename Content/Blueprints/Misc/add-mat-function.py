@@ -1,7 +1,7 @@
 import unreal
 
 # CONFIGURATION
-TARGET_FOLDER = "/Game/Materials/Level1"  # Your folder path here
+TARGET_FOLDER = "/Game/ImportedPacks"  # Your folder path here
 MATERIAL_FUNCTION_PATH = "/Game/Materials/PostProcess/MF_EnvironmentMask"  # Your material function path
 
 # Load the material function asset
