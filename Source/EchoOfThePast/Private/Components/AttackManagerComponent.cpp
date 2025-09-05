@@ -74,7 +74,7 @@ void UAttackManagerComponent::SwitchAttackType(const EDamageTypeEnum Type)
 
 void UAttackManagerComponent::DropOldWeapon(const EDamageTypeEnum& Type)
 {
-	const TSubclassOf<ABaseWeapon> OldWeaponClass = Type == EDamageTypeEnum::Melee ? EquippedSword : EquippedSword;
+	const TSubclassOf<ABaseWeapon> OldWeaponClass = Type == EDamageTypeEnum::Melee ? EquippedSword : EquippedGun;
 	if (!IsValid(OldWeaponClass)) return;
 	const TSubclassOf<AActor> PickupClass = OldWeaponClass->GetDefaultObject<ABaseWeapon>()->WeaponPickupClass;
 	const FVector SpawnLocation = OwnerCharacter->GetActorLocation() + FVector(0, 0, 100);
