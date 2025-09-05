@@ -14,7 +14,6 @@
 #include "Weapons/BaseMeleeWeapon.h"
 #include "Weapons/BaseRangedWeapon.h"
 #include "NiagaraFunctionLibrary.h"
-#include "NiagaraComponent.h"
 // Sets default values for this component's properties
 UAttackManagerComponent::UAttackManagerComponent()
 {

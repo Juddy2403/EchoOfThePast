@@ -12,6 +12,7 @@ class ABaseWeapon;
 class ABaseMeleeWeapon;
 class ABaseRangedWeapon;
 class UNiagaraSystem;
+class USoundCue;
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class ECHOOFTHEPAST_API UAttackManagerComponent : public UActorComponent
