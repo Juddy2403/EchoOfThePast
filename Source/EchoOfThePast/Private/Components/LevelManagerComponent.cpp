@@ -47,7 +47,7 @@ void ULevelManagerComponent::ReloadLevel()
 
 void ULevelManagerComponent::LoadNextLevel()
 {
-	FSLevelConfigStruct* LevelConfig = GetCurrentLevelConfig();
+	const FSLevelConfigStruct* LevelConfig = GetCurrentLevelConfig();
 
 	if (!LevelConfig) return;
 	if (LevelConfig->ShouldKeepPlayerStats)

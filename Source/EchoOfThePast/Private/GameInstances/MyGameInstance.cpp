@@ -27,18 +27,24 @@ void UMyGameInstance::LoadGameStats_Implementation()
 	if (!bHasDataToLoad) return;
 	bHasDataToLoad = false;
 	// delay till next tick
-	GetWorld()->GetTimerManager().SetTimerForNextTick([this]()
-	{
-		AActor* PlayerPawn = UGameplayStatics::GetPlayerPawn(this, 0);
-		if (PlayerPawn->GetClass()->ImplementsInterface(UPlayerStatsInterface::StaticClass()))
+	FTimerHandle TimerHandle;
+	GetWorld()->GetTimerManager().SetTimer(
+		TimerHandle,
+		[this]()
 		{
-			IPlayerStatsInterface::Execute_SetPlayerStats(PlayerPawn, PlayerStats);
-		}
-		AGameModeBase* GameMode = UGameplayStatics::GetGameMode(this);
-		if (UTimerComponent* TimerComponent = GameMode->GetComponentByClass<UTimerComponent>())
-		{
-			TimerComponent->RemainingTime = RemainingTime;
-			TimerComponent->OnTimeUpdated.Broadcast(TimerComponent->RemainingTime, TimerComponent->GetRemainingTime());
-		}
-	});
+			AActor* PlayerPawn = UGameplayStatics::GetPlayerPawn(this, 0);
+			if (PlayerPawn->GetClass()->ImplementsInterface(UPlayerStatsInterface::StaticClass()))
+			{
+				IPlayerStatsInterface::Execute_SetPlayerStats(PlayerPawn, PlayerStats);
+			}
+			AGameModeBase* GameMode = UGameplayStatics::GetGameMode(this);
+			if (UTimerComponent* TimerComponent = GameMode->GetComponentByClass<UTimerComponent>())
+			{
+				TimerComponent->RemainingTime = RemainingTime;
+				TimerComponent->OnTimeUpdated.Broadcast(TimerComponent->RemainingTime, TimerComponent->GetRemainingTime());
+			}
+		},
+		1.f,
+		false
+	);
 }
