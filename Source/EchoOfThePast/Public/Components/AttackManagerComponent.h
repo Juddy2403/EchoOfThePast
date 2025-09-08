@@ -75,7 +75,7 @@ protected:
 
 private:
 	UPROPERTY()
-	ACharacter* OwnerCharacter = nullptr;
+	TObjectPtr<ACharacter> OwnerCharacter = nullptr;
 
 	int CurrentCombo = 0;
 	int CurrentPunchCombo = 0;

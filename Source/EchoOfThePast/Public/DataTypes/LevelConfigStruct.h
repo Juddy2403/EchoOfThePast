@@ -12,29 +12,29 @@ struct FSLevelConfigStruct : public FTableRowBase
 public:
 	/** Please add a variable description */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(DisplayName="NextLevelName", MakeStructureDefaultValue="None"))
-	FName NextLevelName;
+	FName NextLevelName = NAME_None;
 
 	/** Please add a variable description */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(DisplayName="ShouldKeepPlayerStats", MakeStructureDefaultValue="False"))
-	bool ShouldKeepPlayerStats;
+	bool ShouldKeepPlayerStats = false;
 
 	/** Please add a variable description */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(DisplayName="HPModifier", MakeStructureDefaultValue="0.000000"))
-	double HPModifier;
+	double HPModifier = 0.0;
 
 	/** Please add a variable description */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(DisplayName="SpeedModifier", MakeStructureDefaultValue="0.000000"))
-	double SpeedModifier;
+	double SpeedModifier = 0.0;
 
 	/** Please add a variable description */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(DisplayName="DamageModifier", MakeStructureDefaultValue="0.000000"))
-	double DamageModifier;
+	double DamageModifier = 0.0;
 
 	/** Please add a variable description */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(DisplayName="CombatEnabled", MakeStructureDefaultValue="False"))
-	bool CombatEnabled;
+	bool CombatEnabled = false;
 
 	/** Please add a variable description */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(DisplayName="HasTimer", MakeStructureDefaultValue="False"))
-	bool HasTimer;
+	bool HasTimer = false;
 };

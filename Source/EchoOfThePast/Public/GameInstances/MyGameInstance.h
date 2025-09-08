@@ -19,7 +19,10 @@ public:
 	virtual void SaveGameStats_Implementation() override;
 	virtual void LoadGameStats_Implementation() override;
 private:
+	UPROPERTY()
 	bool bHasDataToLoad = false;
+	UPROPERTY()
 	FPlayerStatsStruct PlayerStats;
+	UPROPERTY()
 	int RemainingTime = 0;
 };

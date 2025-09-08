@@ -7,7 +7,6 @@
 #include "DataTypes/LevelConfigStruct.h"
 #include "LevelManagerComponent.generated.h"
 
-
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class ECHOOFTHEPAST_API ULevelManagerComponent : public UActorComponent
 {
