@@ -24,9 +24,9 @@ void AMyHUD::BeginPlay()
 
 	// Create and add widgets to the viewport
 	CreateWidgets(PauseMenuWidgetType, PauseMenuWidget, ESlateVisibility::Collapsed);
+	CreateWidgets(MinimapWidgetType, MinimapWidget);
 	CreateWidgets(GameHudWidgetType, GameHudWidget);
 	CreateWidgets(GameLostWidgetType, GameLostWidget, ESlateVisibility::Collapsed);
-	CreateWidgets(MinimapWidgetType, MinimapWidget);
 
 	BindEvents();
 
