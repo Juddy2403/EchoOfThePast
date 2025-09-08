@@ -17,8 +17,8 @@ FText UTimerComponent::GetRemainingTime() const
 {
 	return FText::Format(
 		FText::FromString("{0}:{1}"),
-		FText::AsNumber(RemainingTime / 60),
-		FText::AsNumber(RemainingTime % 60)
+		FText::AsNumber(RemainingTime / 60, &FNumberFormattingOptions().SetMinimumIntegralDigits(2)),
+		FText::AsNumber(RemainingTime % 60, &FNumberFormattingOptions().SetMinimumIntegralDigits(2))
 	);
 }
 
