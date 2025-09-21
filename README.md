@@ -1,197 +1,92 @@
-# Echo of the Past
+# Echo of the Past 🎮
 
-Echo of the Past is my Unreal-powered action project where I glued together my favorite gameplay loops: quick weapon
-swaps, punchy melee combos, and a dialogue system. It’s my first and biggest yet Unreal indie project.
+> *An Unreal Engine 5 action RPG where androids travel through time to save humanity from itself*
 
-For more information on my design and gameplay mechancis, check the project out [here](https://juddy2403.github.io/echo-of-the-past.html).
-This is a dev-focused README covering the C++ systems and architecture.
+[![Unreal Engine](https://img.shields.io/badge/Unreal%20Engine-5.4.4-313131?style=flat&logo=unrealengine)](https://www.unrealengine.com/)
+[![C++](https://img.shields.io/badge/C++-91.5%25-00599C?style=flat&logo=c%2B%2B)](https://isocpp.org/)
+[![Python](https://img.shields.io/badge/Python-5.6%25-3776AB?style=flat&logo=python)](https://www.python.org/)
+[![Latest Release](https://img.shields.io/github/v/release/Juddy2403/EchoOfThePast)](https://github.com/Juddy2403/EchoOfThePast/releases/latest)
 
-To play the game, download the [latest Windows build](https://github.com/Juddy2403/EchoOfThePast/releases/tag/V3.5).
+Echo of the Past started as a class assignment to learn Unreal Engine basics, but I fell in love with the engine and spent months turning it into my biggest indie project yet. What began with keywords "future" and "resource management" evolved into a combat RPG where the last remaining androids must travel back in time to prevent humanity's self-destruction.
 
+**[🎮 Download Latest Build](https://github.com/Juddy2403/EchoOfThePast/releases/latest) | [📖 Full Project Details](https://juddy2403.github.io/echo-of-the-past.html) | [🎯 Play in Browser](https://itch.io/link-when-available)**
+
+[![Watch the video](https://i9.ytimg.com/vi/tQl6Na0fBCw/maxresdefault.jpg?v=68c020a3&sqp=CMz8wMYG&rs=AOn4CLBBnaTmirQ5QhdSXXry0hxPVrwTEw)](https://youtu.be/tQl6Na0fBCw?si=sjUxrBfX2mgocXYE)
 ---
 
-## TL;DR
+## 🚀 Quick Start
 
-- Engine: Unreal Engine (C++ with Blueprint support)
-- Core systems: GameMode components (Pause, Timer, Level transitions), HUD bound via delegates, Player combat (
-  melee/ranged with combos and pickups), Controller events 
-- Design vibe: Event-driven UI, componentized gameplay, data-driven tuning
-- Platforms: Windows (Editor/Packaged)
+### Prerequisites
+- **Unreal Engine 5.4.4** (recommended)
+- **Windows 10/11** (packaged builds)
+- **Visual Studio 2022** with C++ workload (source builds)
 
----
+### Running the Game
+1. **Download & Play**: Get the [latest Windows build](https://github.com/Juddy2403/EchoOfThePast/releases/latest) and run `EchoOfThePast.exe`
+2. **From Source**: Clone this repo, open `EchoOfThePast.uproject` in UE 5.4.4, and hit Play
 
-## Build & run source project
-
-- Open the project in Unreal Editor (5.4.4 recommended).
-- Ensure the startup map and game mode are set (they’re configured in Config/DefaultEngine.ini).
-- Press Play in Editor or package as usual.
-
-Relevant config (Config/DefaultEngine.ini):
-
-```ini
-GlobalDefaultGameMode = /Game/Blueprints/GameModes/BP_MyGameMode.BP_MyGameMode_C
-EditorStartupMap = /Game/Levels/L_Level0_1.L_Level0_1
-GameInstanceClass = /Script/EchoOfThePast.MyGameInstance
+```bash
+git clone https://github.com/Juddy2403/EchoOfThePast.git
+cd EchoOfThePast
+# Open EchoOfThePast.uproject in Unreal Editor
 ```
 
 ---
 
-## C++ systems
+## ⚔️ What Makes This Special
 
-- GameMode components own global game state:
-    - PauseHandlerComponent — exposes OnPaused(bool)
-    - TimerComponent — counts down, exposes OnTimeUp, OnTimeUpdated, On60SecRemaining
-    - LevelManagerComponent — raises OnOpenLevelTransition on transitions
-- Player controller & pawn emit gameplay signals:
-    - ControllerEventsComponent — multicast pause menu toggle
-    - Ammo/Health components — ammo updates, death-with-delay, etc.
-- HUD wires everything together:
-    - Subscribes to GameMode + Player + Controller delegates
-    - Shows/hides widgets (HUD, minimap, pause menu, game lost)
-    - Pushes UX affordances (e.g., turn the clock red at 60s)
+Echo of the Past showcases **complex, interlocking gameplay systems** built with C++ and Blueprint integration. Every feature was designed with **performance and maintainability** in mind.
 
-This keeps UI reactive and decoupled. Gameplay raises signals; HUD listens and updates.
+### 🎯 Core Combat Features
+- **Dual Combat Modes**: Seamless melee/ranged switching with different mechanics for each
+- **Dynamic Combo System**: Timing-based combos with critical hit finishers
+- **16 Unique Weapons**: 8 melee + 8 ranged with distinct stats and behaviors
+- **Smart Weapon Pickups**: Visual stat comparison when hovering over better gear
 
----
+### 🤖 Advanced AI Systems
+- **Behavior Tree Intelligence**: Modular AI that adapts based on player actions
+- **Multi-Sensory Detection**: Enemies see, hear footsteps, gunshots, and sword attacks
+- **Dynamic Combat Roles**: Same AI framework handles both melee and ranged enemies
+- **Stagger Mechanics**: Timing-based vulnerability windows for tactical gameplay
 
-## Input: Controller events (pause workflow)
+### 🔧 Technical Solutions I'm Proud Of
 
-The controller exposes a blueprint-assignable multicast delegate for pause toggling. It’s small and surgical—no
-device-specific details leak into UI logic.
+**3D Aiming in a Crosscode-Inspired System**: Solved cursor accuracy in 3D by creating custom trace channels hitting an invisible plane through the player's center—no more missed shots due to perspective issues.
 
-Header (Source/EchoOfThePast/Public/Components/ControllerEventsComponent.h):
+**Custom Occlusion System**: Built my own character visibility solution after third-party plugins caused crashes. Material functions set opacity masks to 0 when objects block the camera, with a Python script automatically applying this to all materials.
 
-```c++
-UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
-class ECHOOFTHEPAST_API UControllerEventsComponent : public UActorComponent
-{
-    GENERATED_BODY()
-
-public:
-    UControllerEventsComponent();
-
-    DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnPauseMenuCommand, bool, bIsPaused);
-
-    UPROPERTY(BlueprintCallable, BlueprintAssignable, Category = "Events")
-    FOnPauseMenuCommand OnPauseMenuCommand;
-};
-```
-
-[Open file](https://github.com/Juddy2403/EchoOfThePast/blob/ee09bf301802a8d440a6c21e71be60f8eb500014/Source/EchoOfThePast/Public/Components/ControllerEventsComponent.h)
-
-HUD wiring (Source/EchoOfThePast/Private/HUDs/MyHUD.cpp):
-
-```c++
-if (APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0))
-{
-    if (UControllerEventsComponent* ControllerEvents = PC->FindComponentByClass<UControllerEventsComponent>())
-    {
-        ControllerEvents->OnPauseMenuCommand.AddDynamic(this, &AMyHUD::SetPausedMenuVisibility);
-    }
-}
-```
-
-And the actual UI reaction is tiny and explicit:
-
-```c++
-void AMyHUD::SetPausedMenuVisibility(bool IsPaused)
-{
-    if (!PauseMenuWidget) return;
-    const ESlateVisibility Visibility = IsPaused ? ESlateVisibility::Visible : ESlateVisibility::Collapsed;
-    PauseMenuWidget->SetVisibility(Visibility);
-}
-```
-
-[Open file](https://github.com/Juddy2403/EchoOfThePast/blob/ee09bf301802a8d440a6c21e71be60f8eb500014/Source/EchoOfThePast/Private/HUDs/MyHUD.cpp#L62-L143)
+**Event-Driven UI Architecture**: HUD subscribes to GameMode and Player delegates for reactive updates. No polling, no desync—just clean separation between gameplay and presentation.
 
 ---
 
-## HUD: event-driven UI
+## 🏗️ Architecture Deep Dive
 
-My HUD subscribes to exactly what it cares about. The code reads like a checklist:
+The codebase follows **component-driven design** with event-based communication. Here's how the major systems work together:
 
-- Game paused? Hide minimap and in-game HUD.
-- Time updated? Update UI text.
-- 60s remaining? Turn the timer red.
-- Player died? Show “Game Lost”.
-- Level transition? Fade-in.
+### Component Architecture
+```
+GameMode Components (Global State):
+├── PauseHandlerComponent     → OnPaused(bool)
+├── TimerComponent           → OnTimeUp, OnTimeUpdated, On60SecRemaining  
+└── LevelManagerComponent    → OnOpenLevelTransition
 
-Binding section (Source/EchoOfThePast/Private/HUDs/MyHUD.cpp):
-
-```c++
-// GameMode events
-if (AGameModeBase* GM = UGameplayStatics::GetGameMode(this)) {
-    if (UPauseHandlerComponent* Pause = GM->GetComponentByClass<UPauseHandlerComponent>())
-        Pause->OnPaused.AddDynamic(this, &AMyHUD::OnPaused);
-
-    if (UTimerComponent* Timer = GM->GetComponentByClass<UTimerComponent>()) {
-        Timer->OnTimeUp.AddDynamic(this, &AMyHUD::OnGameLost);
-        Timer->OnTimeUpdated.AddDynamic(this, &AMyHUD::OnTimeUpdated);
-        Timer->On60SecRemaining.AddDynamic(this, &AMyHUD::SetTimerColorRed);
-    }
-    if (ULevelManagerComponent* LM = GM->GetComponentByClass<ULevelManagerComponent>())
-        LM->OnOpenLevelTransition.AddDynamic(this, &AMyHUD::FadeIn);
-}
-
-// Player events
-if (APawn* Pawn = UGameplayStatics::GetPlayerPawn(this, 0)) {
-    if (UHealthComponent* Health = Pawn->FindComponentByClass<UHealthComponent>())
-        Health->OnDeathAfterDelay.AddDynamic(this, &AMyHUD::OnGameLost);
-
-    if (UAmmoManagerComponent* Ammo = Pawn->FindComponentByClass<UAmmoManagerComponent>())
-        Ammo->OnAmmoChanged.AddDynamic(this, &AMyHUD::OnAmmoChanged);
-}
+Player Systems:
+├── AttackManagerComponent   → Combat logic, weapon swapping, combos
+├── HealthComponent         → OnDeathAfterDelay  
+├── AmmoManagerComponent    → OnAmmoChanged
+└── ControllerEventsComponent → OnPauseMenuCommand
 ```
 
-The handlers themselves are dead simple:
+### Key Implementation Highlights
 
-```c++
-void AMyHUD::OnPaused(bool IsPaused)
-{
-    const auto Vis = IsPaused ? ESlateVisibility::Collapsed : ESlateVisibility::Visible;
-    if (MinimapWidget) MinimapWidget->SetVisibility(Vis);
-    if (GameHudWidget) GameHudWidget->SetVisibility(Vis);
-}
-
-void AMyHUD::OnTimeUpdated(int RemainingTime, FText RemainingText)
-{
-    if (GameHudWidget->GetClass()->ImplementsInterface(UTimerWidgetInterface::StaticClass()))
-        ITimerWidgetInterface::Execute_UpdateTimerText(GameHudWidget, RemainingText);
-}
-```
-
-[Open file](https://github.com/Juddy2403/EchoOfThePast/blob/ee09bf301802a8d440a6c21e71be60f8eb500014/Source/EchoOfThePast/Private/HUDs/MyHUD.cpp#L62-L143)
-
----
-
-## Combat: weapon swaps and melee combos
-
-Combat is handled by a component that equips weapons (melee/ranged), manages combo windows, and spawns pickups when
-dropping old gear. It’s gameplay-lean and intentionally readable.
-
-Weapon swapping (Source/EchoOfThePast/Private/Components/AttackManagerComponent.cpp):
-
-```c++
-void UAttackManagerComponent::SwitchAttackType(const EDamageTypeEnum Type)
-{
-    switch (Type)
-    {
-    case EDamageTypeEnum::Melee:   SwitchWeapon(EquippedSword, true); break;
-    case EDamageTypeEnum::Ranged:  SwitchWeapon(EquippedGun); break;
-    default: break;
-    }
-}
-
+**Weapon Swapping System** ([View Code](Source/EchoOfThePast/Private/Components/AttackManagerComponent.cpp#L45))
+```cpp
 void UAttackManagerComponent::SwitchWeapon(const TSubclassOf<ABaseWeapon>& WeaponClass, bool bIsSwitchingToMelee)
 {
-    if (bIsSwitchingToMelee && !IsValid(EquippedSword)) {
-        if (IsValid(CurrentWeapon)) CurrentWeapon->Destroy();
-        return;
-    }
-    if (!IsValid(WeaponClass)) return;
     if (IsValid(CurrentWeapon)) CurrentWeapon->Destroy();
-
-    FActorSpawnParameters Params; Params.Owner = OwnerCharacter;
+    
+    FActorSpawnParameters Params; 
+    Params.Owner = OwnerCharacter;
     CurrentWeapon = GetWorld()->SpawnActor<ABaseWeapon>(WeaponClass, FTransform::Identity, Params);
     CurrentWeapon->AttachToComponent(
         OwnerCharacter->GetMesh(),
@@ -201,74 +96,202 @@ void UAttackManagerComponent::SwitchWeapon(const TSubclassOf<ABaseWeapon>& Weapo
 }
 ```
 
-Combo pacing (same file):
-
-```c++
-UAnimMontage* UAttackManagerComponent::GetMeleeMontage(const float& WeaponPlayRate)
+**Event-Driven HUD Updates** ([View Code](Source/EchoOfThePast/Private/HUDs/MyHUD.cpp#L89))
+```cpp
+void AMyHUD::OnPaused(bool IsPaused)
 {
-    const float Now = UGameplayStatics::GetTimeSeconds(GetWorld());
-    const float Interval = (1.f / WeaponPlayRate) * 2.f; // simple anti-mash window
-
-    if (CurrentCombo >= AttackMontages.Num()) CurrentCombo = -1;
-    if ((Now - LastAttackTime) > Interval)     CurrentCombo = -1;
-
-    ++CurrentCombo;
-    LastAttackTime = Now;
-
-    ComboModifier = CurrentCombo > PowerfulComboHigherThan ? 1.5f : 1.f;
-    return AttackMontages.IsValidIndex(CurrentCombo) ? AttackMontages[CurrentCombo] : nullptr;
-}
-```
-
-[Open file](https://github.com/Juddy2403/EchoOfThePast/blob/ee09bf301802a8d440a6c21e71be60f8eb500014/Source/EchoOfThePast/Private/Components/AttackManagerComponent.cpp#L49-L136)
-
----
-
-## Timing and stakes
-
-A central timer keeps pressure on the player. It drives:
-
-- “Time’s up” loss state (OnTimeUp)
-- Minute-remaining visual cue (On60SecRemaining)
-- Continuous UI updates (OnTimeUpdated)
-
-You’ll see the HUD flip the clock red right on cue:
-
-```c++
-void AMyHUD::SetTimerColorRed()
-{
-    if (GameHudWidget->GetClass()->ImplementsInterface(UTimerWidgetInterface::StaticClass()))
-        ITimerWidgetInterface::Execute_SetTimerColorRed(GameHudWidget);
+    const auto Vis = IsPaused ? ESlateVisibility::Collapsed : ESlateVisibility::Visible;
+    if (MinimapWidget) MinimapWidget->SetVisibility(Vis);
+    if (GameHudWidget) GameHudWidget->SetVisibility(Vis);
 }
 ```
 
 ---
 
-## Rendering, audio, and platform notes
+## 🎨 Behind the Scenes
 
-- Rendering targets DX12 by default (configurable in DefaultEngine.ini).
-- Audio: project-level settings (sample rate, callback size, worker count) are tuned in config. Gameplay audio hooks
-  live with their owning systems/components and fire off from events (e.g., on hit, on swap, on lose).
-- Platform defaults are conservative (no Nanite, no virtual textures) to keep the Editor snappy.
+### The Story That Drives Everything
+Four androids remain on a barren Earth—humanity's last consciousness. Using the final resources, they build an unstable time portal. Only one can go back to key moments in human history, slowing down the evolution that led to destruction. But with each mission, you grow weaker... after all, you are humanity's **greatest creation**.
 
----
-
-## Design notes (why it’s built this way)
-
-- Event-first UI: HUD doesn’t poll; it listens—less boilerplate, fewer desync bugs.
-- Components own behavior: attack logic in an AttackManagerComponent, not scattered across the pawn or animation BP.
-- Slim bridges: Controller events and GameMode components translate engine-level happenings into game-level signals you
-  can unit test at the C++ layer.
-- Data turns the knobs: timing windows, combo thresholds, and widgets are configured, not hard-coded into UI.
+### Technical Challenges Solved
+- **Cross-Code Integration**: Seamless Blueprint/C++ workflow for rapid iteration
+- **Performance Optimization**: Component-based architecture eliminates unnecessary updates
+- **Shader Programming**: Custom materials for melee radius visualization and occlusion
+- **Python Automation**: Material batch processing for consistent occlusion behavior
+- **Niagara VFX Integration**: Damage numbers with physics-based randomization
 
 ---
 
-## Contributing / hacking
+## 🛠️ Tech Stack
 
-- Want a new HUD reaction? Add a delegate and bind it—no monolith needed.
-- New weapon? Make a class, wire its pickup class, drop the old one via `DropOldWeapon`, and let the manager attach it
-  to the right socket.
-- Tweak pressure? Adjust `TimerComponent` thresholds and the UI will follow.
+| **Category** | **Technologies** |
+|--------------|------------------|
+| **Engine** | Unreal Engine 5.4.4 |
+| **Programming** | C++ (91.5%), Python (5.6%), C# (2.3%) |
+| **Graphics** | DX12, Custom Shaders, Niagara VFX |
+| **AI** | Behavior Trees, Pawn Sensing, Blackboards |
+| **Audio** | Spatial Audio, AI Voice-overs, Dynamic SFX |
+| **Tools** | Python Material Automation, Custom Editor Tools |
 
+---
 
+## 🚀 Installation & Development
 
+### For Players
+1. Download the [latest release](https://github.com/Juddy2403/EchoOfThePast/releases/latest)
+2. Extract and run `EchoOfThePast.exe`
+3. Enjoy the time-traveling android adventure!
+
+### For Developers
+```bash
+# Clone the repository
+git clone https://github.com/Juddy2403/EchoOfThePast.git
+cd EchoOfThePast
+
+# Open in Unreal Editor (requires UE 5.4.4)
+# Double-click EchoOfThePast.uproject
+
+# Or generate Visual Studio files
+"C:\Program Files\Epic Games\UE_5.4\Engine\Binaries\DotNET\UnrealBuildTool.exe" -projectfiles -project="EchoOfThePast.uproject" -game -rocket -progress
+```
+
+### Configuration
+Key settings are in `Config/DefaultEngine.ini`:
+```ini
+[/Script/EngineSettings.GameMapsSettings]
+GlobalDefaultGameMode=/Game/Blueprints/GameModes/BP_MyGameMode.BP_MyGameMode_C
+EditorStartupMap=/Game/Levels/L_Level0_1.L_Level0_1
+GameInstanceClass=/Script/EchoOfThePast.MyGameInstance
+```
+
+---
+
+## 🎯 Features Showcase
+
+<details>
+<summary><strong>🗺️ Combat System Details</strong></summary>
+
+**Melee Combat**:
+- Combo chains with timing windows
+- 360° attack radius visualization
+- Stagger mechanics for tactical depth
+- Critical hit system on combo finishers
+
+**Ranged Combat**:
+- Custom 3D cursor placement on invisible plane
+- Multiple projectile types (hitscan, projectile, explosive)
+- Ammo management with pickup system
+- Laser sight telegraphing for enemy attacks
+
+**Weapon Variety**:
+- 8 melee weapons with different speeds and crit rates
+- 8 ranged weapons across 3 projectile categories
+- Visual stat comparison on ground pickups
+- Shared weapon classes between player and enemies
+
+</details>
+
+<details>
+<summary><strong>🤖 AI Behavior System</strong></summary>
+
+**Detection Systems**:
+- Visual detection with line-of-sight checking
+- Audio detection (footsteps, weapon sounds, combat)
+- Forgetting mechanism after losing player contact
+- Blackboard-driven state management
+
+**Combat Behaviors**:
+- Melee enemies: Close distance, face player, combo attacks
+- Ranged enemies: Maintain distance, laser telegraphing, burst fire
+- Dynamic movement speed based on player distance
+- Stagger vulnerability windows during attack preparation
+
+**Customization**:
+- Editor-exposed weapon and health settings
+- Modular Behavior Tree for easy enemy variants
+- Shared weapon system with player (minus ammo for ranged)
+
+</details>
+
+<details>
+<summary><strong>💫 Technical Innovations</strong></summary>
+
+**Custom Occlusion Solution**:
+- Material function controlling opacity masks
+- Python automation for batch material updates
+- Smooth fade transitions without mesh popping
+- Performance-optimized compared to failed plugin solutions
+
+**3D Aiming System**:
+- Invisible plane collision for accurate cursor placement
+- Crosscode-inspired mechanics adapted to 3D space
+- Custom trace channels preventing ground interference
+- Perspective-independent targeting accuracy
+
+**Event-Driven UI**:
+- Delegate-based communication between systems
+- No polling-based updates for better performance
+- Reactive interface responding to game state changes
+- Clean separation of gameplay and presentation logic
+
+</details>
+
+---
+
+## 🔮 Future Vision
+
+While Echo of the Past represents my biggest solo project to date, I see it as a foundation for even more ambitious work. The systems I built here—modular AI, event-driven architecture, and performance-conscious design—are patterns I'll carry into professional game development.
+
+### What I Learned
+- **Component-driven design** scales better than monolithic systems
+- **Event-based communication** eliminates tight coupling between systems
+- **Performance matters early**—architecture decisions compound over time
+- **Polish makes the difference** between a demo and a game people want to play
+
+### Potential Expansions
+- Further balancing gameplay
+- Procedural mission generation for infinite replayability
+- Advanced AI director adjusting difficulty dynamically
+- Further improving the combat to resemble the complexity of a souls like game
+
+---
+
+## 🤝 Connect & Support
+
+**Ioana Raileanu** - Gameplay Programmer & Designer
+- 🌐 **Portfolio**: [juddy2403.github.io](https://juddy2403.github.io)
+- 💼 **LinkedIn**: [Connect with me](https://www.linkedin.com/in/ioana-raileanu-147725252/)
+- 📧 **Contact**: [Get in touch](mailto:ioanaraileanu24@yahoo.com)
+- 🎮 **More Projects**: [GitHub Profile](https://github.com/Juddy2403)
+
+---
+
+## ⭐ Show Your Support
+
+If Echo of the Past impressed you or helped with your own projects, consider:
+- ⭐ **Starring this repository**
+- 🐛 **Reporting issues** you encounter
+- 💡 **Suggesting features** for future development
+- 🔄 **Sharing** with other game developers
+
+---
+
+## 📄 License & Credits
+
+This project is available under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+**Special Thanks**:
+- Epic Games for Unreal Engine 5
+- The Crosscode team for combat inspiration
+- Digital Arts and Entertainment Belgium for the initial assignment
+- The indie game dev community for endless inspiration
+
+---
+
+<div align="center">
+
+**Built with 💖 and lots of ☕ by [Ioana Raileanu](https://juddy2403.github.io)**
+
+*"After all, you are humanity's greatest creation."*
+
+</div>
