@@ -1,6 +1,4 @@
-# Echo of the Past 🎮
-
-> *An Unreal Engine 5 action RPG where androids travel through time to save humanity from itself*
+# Echo of the Past
 
 [![Unreal Engine](https://img.shields.io/badge/Unreal%20Engine-5.4.4-313131?style=flat&logo=unrealengine)](https://www.unrealengine.com/)
 [![C++](https://img.shields.io/badge/C++-91.5%25-00599C?style=flat&logo=c%2B%2B)](https://isocpp.org/)
@@ -9,12 +7,13 @@
 
 Echo of the Past started as a class assignment to learn Unreal Engine basics, but I fell in love with the engine and spent months turning it into my biggest indie project yet. What began with keywords "future" and "resource management" evolved into a combat RPG where the last remaining androids must travel back in time to prevent humanity's self-destruction.
 
-**[🎮 Download Latest Build](https://github.com/Juddy2403/EchoOfThePast/releases/latest) | [📖 Full Project Details](https://juddy2403.github.io/echo-of-the-past.html) | [🎯 Play in Browser](https://itch.io/link-when-available)**
+**[Download Latest Build](https://github.com/Juddy2403/EchoOfThePast/releases/latest) | [Full Project Details](https://juddy2403.github.io/echo-of-the-past.html)**
 
-[![Watch the video](https://i9.ytimg.com/vi/tQl6Na0fBCw/maxresdefault.jpg?v=68c020a3&sqp=CMz8wMYG&rs=AOn4CLBBnaTmirQ5QhdSXXry0hxPVrwTEw)](https://youtu.be/tQl6Na0fBCw?si=sjUxrBfX2mgocXYE)
+[![Watch the video](https://i.imgur.com/IIVge3e.jpeg)](https://youtu.be/tQl6Na0fBCw?si=sjUxrBfX2mgocXYE)
+
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - **Unreal Engine 5.4.4** (recommended)
@@ -33,23 +32,23 @@ cd EchoOfThePast
 
 ---
 
-## ⚔️ What Makes This Special
+## What Makes This Special
 
 Echo of the Past showcases **complex, interlocking gameplay systems** built with C++ and Blueprint integration. Every feature was designed with **performance and maintainability** in mind.
 
-### 🎯 Core Combat Features
+### Core Combat Features
 - **Dual Combat Modes**: Seamless melee/ranged switching with different mechanics for each
 - **Dynamic Combo System**: Timing-based combos with critical hit finishers
 - **16 Unique Weapons**: 8 melee + 8 ranged with distinct stats and behaviors
 - **Smart Weapon Pickups**: Visual stat comparison when hovering over better gear
 
-### 🤖 Advanced AI Systems
+### Advanced AI Systems
 - **Behavior Tree Intelligence**: Modular AI that adapts based on player actions
 - **Multi-Sensory Detection**: Enemies see, hear footsteps, gunshots, and sword attacks
 - **Dynamic Combat Roles**: Same AI framework handles both melee and ranged enemies
 - **Stagger Mechanics**: Timing-based vulnerability windows for tactical gameplay
 
-### 🔧 Technical Solutions I'm Proud Of
+### Technical Solutions I'm Proud Of
 
 **3D Aiming in a Crosscode-Inspired System**: Solved cursor accuracy in 3D by creating custom trace channels hitting an invisible plane through the player's center—no more missed shots due to perspective issues.
 
@@ -59,7 +58,7 @@ Echo of the Past showcases **complex, interlocking gameplay systems** built with
 
 ---
 
-## 🏗️ Architecture Deep Dive
+## Architecture Deep Dive
 
 The codebase follows **component-driven design** with event-based communication. Here's how the major systems work together:
 
@@ -108,7 +107,7 @@ void AMyHUD::OnPaused(bool IsPaused)
 
 ---
 
-## 🎨 Behind the Scenes
+## Behind the Scenes
 
 ### The Story That Drives Everything
 Four androids remain on a barren Earth—humanity's last consciousness. Using the final resources, they build an unstable time portal. Only one can go back to key moments in human history, slowing down the evolution that led to destruction. But with each mission, you grow weaker... after all, you are humanity's **greatest creation**.
@@ -122,7 +121,7 @@ Four androids remain on a barren Earth—humanity's last consciousness. Using th
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | **Category** | **Technologies** |
 |--------------|------------------|
@@ -135,7 +134,7 @@ Four androids remain on a barren Earth—humanity's last consciousness. Using th
 
 ---
 
-## 🚀 Installation & Development
+## Installation & Development
 
 ### For Players
 1. Download the [latest release](https://github.com/Juddy2403/EchoOfThePast/releases/latest)
@@ -166,10 +165,10 @@ GameInstanceClass=/Script/EchoOfThePast.MyGameInstance
 
 ---
 
-## 🎯 Features Showcase
+## Features Showcase
 
 <details>
-<summary><strong>🗺️ Combat System Details</strong></summary>
+<summary><strong> Combat System Details</strong></summary>
 
 **Melee Combat**:
 - Combo chains with timing windows
@@ -192,7 +191,7 @@ GameInstanceClass=/Script/EchoOfThePast.MyGameInstance
 </details>
 
 <details>
-<summary><strong>🤖 AI Behavior System</strong></summary>
+<summary><strong> AI Behavior System</strong></summary>
 
 **Detection Systems**:
 - Visual detection with line-of-sight checking
@@ -214,7 +213,7 @@ GameInstanceClass=/Script/EchoOfThePast.MyGameInstance
 </details>
 
 <details>
-<summary><strong>💫 Technical Innovations</strong></summary>
+<summary><strong> Technical Innovations</strong></summary>
 
 **Custom Occlusion Solution**:
 - Material function controlling opacity masks
@@ -238,7 +237,7 @@ GameInstanceClass=/Script/EchoOfThePast.MyGameInstance
 
 ---
 
-## 🔮 Future Vision
+## Future Vision
 
 While Echo of the Past represents my biggest solo project to date, I see it as a foundation for even more ambitious work. The systems I built here—modular AI, event-driven architecture, and performance-conscious design—are patterns I'll carry into professional game development.
 
@@ -256,27 +255,27 @@ While Echo of the Past represents my biggest solo project to date, I see it as a
 
 ---
 
-## 🤝 Connect & Support
+## Connect & Support
 
 **Ioana Raileanu** - Gameplay Programmer & Designer
-- 🌐 **Portfolio**: [juddy2403.github.io](https://juddy2403.github.io)
-- 💼 **LinkedIn**: [Connect with me](https://www.linkedin.com/in/ioana-raileanu-147725252/)
-- 📧 **Contact**: [Get in touch](mailto:ioanaraileanu24@yahoo.com)
-- 🎮 **More Projects**: [GitHub Profile](https://github.com/Juddy2403)
+-  **Portfolio**: [juddy2403.github.io](https://juddy2403.github.io)
+-  **LinkedIn**: [Connect with me](https://www.linkedin.com/in/ioana-raileanu-147725252/)
+-  **Contact**: [Get in touch](mailto:ioanaraileanu24@yahoo.com)
+-  **More Projects**: [GitHub Profile](https://github.com/Juddy2403)
 
 ---
 
-## ⭐ Show Your Support
+## Show Your Support
 
 If Echo of the Past impressed you or helped with your own projects, consider:
-- ⭐ **Starring this repository**
-- 🐛 **Reporting issues** you encounter
-- 💡 **Suggesting features** for future development
-- 🔄 **Sharing** with other game developers
+-  **Starring this repository**
+-  **Reporting issues** you encounter
+-  **Suggesting features** for future development
+-  **Sharing** with other game developers
 
 ---
 
-## 📄 License & Credits
+##  License & Credits
 
 This project is available under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
