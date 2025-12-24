@@ -53,6 +53,10 @@
 		{
 			"Name": "GPULightmass",
 			"Enabled": true
+		},
+		{
+			"Name": "TraceSourceFilters",
+			"Enabled": true
 		}
 	],
 	"TargetPlatforms": [
